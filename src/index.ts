@@ -10,7 +10,7 @@ import {
 const app = new Hono();
 
 app.get("/", (c) => {
-  return c.text("Hello Honooooooo!");
+  return c.text("Hello nyoba caching!");
 });
 
 // Get Users
