@@ -12,3 +12,47 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Provinsi {
+  id              Int       @id @default(autoincrement())
+  nama_provinsi   String
+  ibu_kota        String
+  jumlah_penduduk Int?
+  luas_wilayah    Float?
+  suku            Suku[]
+  budaya          Budaya[]
+  lagu_daerah     LaguDaerah[]
+  kuliner         Kuliner[]
+}
+
+model Suku {
+  id           Int      @id @default(autoincrement())
+  nama_suku    String
+  id_provinsi  Int
+  provinsi     Provinsi @relation(fields: [id_provinsi], references: [id], onDelete: Cascade)
+}
+
+model Budaya {
+  id             Int      @id @default(autoincrement())
+  nama_budaya    String
+  kategori_budaya String
+  deskripsi      String?
+  id_provinsi    Int
+  provinsi       Provinsi @relation(fields: [id_provinsi], references: [id], onDelete: Cascade)
+}
+
+model LaguDaerah {
+  id           Int      @id @default(autoincrement())
+  judul_lagu   String
+  pencipta     String?
+  id_provinsi  Int
+  provinsi     Provinsi @relation(fields: [id_provinsi], references: [id], onDelete: Cascade)
+}
+
+model Kuliner {
+  id           Int      @id @default(autoincrement())
+  nama_kuliner String
+  deskripsi    String?
+  id_provinsi  Int
+  provinsi     Provinsi @relation(fields: [id_provinsi], references: [id], onDelete: Cascade)
+}
