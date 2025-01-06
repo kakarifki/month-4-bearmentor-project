@@ -1,17 +1,27 @@
 import { Hono } from "hono";
-import {
-  addUser,
-  deleteUserById,
-  getUserById,
-  getUsers,
-  updateEmailById,
-} from "./users";
+import { PrismaClient } from '@prisma/client'
+
+
 
 const app = new Hono();
+const prisma = new PrismaClient()
 
 app.get("/", (c) => {
-  return c.text("Hello nyoba caching!");
+  return c.text("Hello nyoba update data!");
 });
+
+//insert provinsi
+app.post("seed/provinsi", async (c) => {
+ const insertedProvinsi = await prisma.provinsi.createMany({
+  data: [
+    { nama_provinsi: "DKI Jakarta", ibu_kota: "Jakarta", jumlah_penduduk: 10672100, luas_wilayah:661.5 },
+    { nama_provinsi: "Jawa Barat", ibu_kota: "Bandung", jumlah_penduduk: 49935858, luas_wilayah:35377.76 } 
+  ],
+ });
+ return c.json(insertedProvinsi, 201)
+})
+
+
 
 // Get Users
 app.get("/users", async (c) => {

@@ -23,6 +23,8 @@ model Provinsi {
   budaya          Budaya[]
   lagu_daerah     LaguDaerah[]
   kuliner         Kuliner[]
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
 }
 
 model Suku {
@@ -30,6 +32,8 @@ model Suku {
   nama_suku    String
   id_provinsi  Int
   provinsi     Provinsi @relation(fields: [id_provinsi], references: [id], onDelete: Cascade)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
 model Budaya {
@@ -39,6 +43,8 @@ model Budaya {
   deskripsi      String?
   id_provinsi    Int
   provinsi       Provinsi @relation(fields: [id_provinsi], references: [id], onDelete: Cascade)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }
 
 model LaguDaerah {
@@ -47,6 +53,8 @@ model LaguDaerah {
   pencipta     String?
   id_provinsi  Int
   provinsi     Provinsi @relation(fields: [id_provinsi], references: [id], onDelete: Cascade)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
 model Kuliner {
@@ -55,4 +63,6 @@ model Kuliner {
   deskripsi    String?
   id_provinsi  Int
   provinsi     Provinsi @relation(fields: [id_provinsi], references: [id], onDelete: Cascade)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
