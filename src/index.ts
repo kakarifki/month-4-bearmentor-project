@@ -59,12 +59,12 @@ app.get("/etchnics", async (c) => {
 })
 
 //Update Province
-app.patch("/provinces/:uniquecode", async (c) => {
- const name = c.req.param('uniquecode')
+app.patch("/provinces/:provincecode", async (c) => {
+ const name = c.req.param('provincecode')
  const body = await c.req.json<{ name: string}>()
  const updatedProvince = await prisma.province.update({
   where: {
-    uniqueCode: name
+    provinceCode: name
   },
   data: { 
    name: body.name
@@ -78,11 +78,11 @@ app.patch("/provinces/:uniquecode", async (c) => {
 })
 
 // Delete a Province
-app.delete("/provinces/:uniquecode", async (c) => {
-  const name = c.req.param('uniquecode')
+app.delete("/provinces/:provincecode", async (c) => {
+  const name = c.req.param('provincecode')
   const deletedProvince = await prisma.province.delete ({
     where: {
-      uniqueCode: name
+      provinceCode: name
     }
   })
   return c.json({
