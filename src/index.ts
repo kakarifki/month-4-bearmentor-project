@@ -14,17 +14,33 @@ app.get("/", (c) => {
 app.post("seed/provinsi", async (c) => {
  const insertedProvinsi = await prisma.province.createMany({
   data: [
-    { name: "DKI Jakarta", uniqueCode: "dki",  capital_city: "Jakarta", population: 10672100, area_size: 35377.76}, 
-    { name: "Jawa Barat", uniqueCode: "jabar", capital_city: "Bandung", population: 49935858, area_size:35377.76}
+    { name: "DKI Jakarta", provinceCode: "dki",  capital_city: "Jakarta", population: 10672100, area_size: 35377.76}, 
+    { name: "Jawa Barat", provinceCode: "jabar", capital_city: "Bandung", population: 49935858, area_size:35377.76}
   ],
   skipDuplicates: true,
  });
  return c.json(insertedProvinsi, 201)
 })
 
+// Insert Ethnic Grup
+app.post("seed/ethnics", async (c) => {
+  const insertedEthnic = await prisma.ethnicGroup.createMany({
+   data: [
+     { name: "Betawi", ethnicGroupCode: "betawi", provinceCode: "dki" }, 
+     { name: "Sunda", ethnicGroupCode: "sunda", provinceCode: "jabar"}
+   ],
+   skipDuplicates: true,
+  });
+  return c.json(insertedEthnic, 201)
+ })
+
 //select province
 app.get("/provinces", async (c) => {
-  const provinces = await prisma.province.findMany()
+  const provinces = await prisma.province.findMany({
+    include: {
+      ethnicgroups: true
+    }
+  })
   return c.json ({
     status: "success",
     message: "successfully get provinces",

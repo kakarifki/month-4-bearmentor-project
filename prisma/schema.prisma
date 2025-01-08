@@ -14,9 +14,9 @@ datasource db {
 }
 
 model Province {
-  id             Int       @id @default(autoincrement())
+  id             Int           @id @default(autoincrement())
   name           String
-  uniqueCode     String    @unique
+  provinceCode   String        @unique
   capital_city   String
   population     Int?
   area_size      Float?
@@ -24,60 +24,60 @@ model Province {
   cultures       Culture[]
   regional_songs RegionalSong[]
   cuisines       Cuisine[]
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
 
   @@map("provinces")
 }
 
 model EthnicGroup {
-  id           Int      @id @default(autoincrement())
-  name         String
-  uniqueCode   String   @unique
-  provinceId   Int
-  province     Province @relation(fields: [provinceId], references: [id], onDelete: Cascade)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id              Int       @id @default(autoincrement())
+  name            String
+  ethnicGroupCode String    @unique
+  provinceCode    String
+  province        Province  @relation(fields: [provinceCode], references: [provinceCode], onDelete: Cascade)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
 
   @@map("ethnicgroups")
 }
 
 model Culture {
-  id              Int      @id @default(autoincrement())
+  id              Int       @id @default(autoincrement())
   name            String
-  uniqueCode      String   @unique
+  cultureCode     String    @unique
   category        String
   description     String?
-  provinceId      Int
-  province        Province @relation(fields: [provinceId], references: [id], onDelete: Cascade)
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  provinceCode    String
+  province        Province  @relation(fields: [provinceCode], references: [provinceCode], onDelete: Cascade)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
 
   @@map("cultures")
 }
 
 model RegionalSong {
-  id           Int      @id @default(autoincrement())
-  title        String
-  uniqueCode   String   @unique
-  composer     String?
-  provinceId   Int
-  province     Province @relation(fields: [provinceId], references: [id], onDelete: Cascade)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id              Int       @id @default(autoincrement())
+  title           String
+  regionalSongCode String   @unique
+  composer        String?
+  provinceCode    String
+  province        Province  @relation(fields: [provinceCode], references: [provinceCode], onDelete: Cascade)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
 
   @@map("regionalsongs")
 }
 
 model Cuisine {
-  id           Int      @id @default(autoincrement())
-  name         String
-  uniqueCode   String   @unique
-  description  String?
-  provinceId   Int
-  province     Province @relation(fields: [provinceId], references: [id], onDelete: Cascade)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id              Int       @id @default(autoincrement())
+  name            String
+  cuisineCode     String    @unique
+  description     String?
+  provinceCode    String
+  province        Province  @relation(fields: [provinceCode], references: [provinceCode], onDelete: Cascade)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
   
   @@map("cuisines")
 }
