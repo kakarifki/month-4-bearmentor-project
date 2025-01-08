@@ -13,6 +13,8 @@ RUN bun install
 # Copy semua file yang ada ke workdir
 COPY . /app
 
+RUN bunx prisma generate
+
 # assign port yang digunakan di workdir
 EXPOSE 3000
 
