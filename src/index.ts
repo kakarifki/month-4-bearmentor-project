@@ -14,11 +14,56 @@ app.get("/", (c) => {
 app.post("seed/provinsi", async (c) => {
  const insertedProvinsi = await prisma.province.createMany({
   data: [
-    { name: "DKI Jakarta", capital_city: "Jakarta", population: 10672100, area_size: 35377.76}, 
-    { name: "Jawa Barat", capital_city: "Bandung", population: 49935858, area_size:35377.76}
+    { name: "DKI Jakarta", uniqueCode: "dki",  capital_city: "Jakarta", population: 10672100, area_size: 35377.76}, 
+    { name: "Jawa Barat", uniqueCode: "jabar", capital_city: "Bandung", population: 49935858, area_size:35377.76}
   ],
+  skipDuplicates: true,
  });
  return c.json(insertedProvinsi, 201)
+})
+
+//select province
+app.get("/provinces", async (c) => {
+  const provinces = await prisma.province.findMany()
+  return c.json ({
+    status: "success",
+    message: "successfully get provinces",
+    data: provinces
+  }, 200)
+})
+
+//Update Province
+app.patch("/provinces/:uniquecode", async (c) => {
+ const name = c.req.param('uniquecode')
+ const body = await c.req.json<{ name: string}>()
+ const updatedProvince = await prisma.province.update({
+  where: {
+    uniqueCode: name
+  },
+  data: { 
+   name: body.name
+  }
+ })
+ return c.json({
+  status: "success",
+  message: "successfully update a province name",
+  data: updatedProvince
+ }, 200)
+})
+
+// Delete a Province
+app.delete("/provinces/:uniquecode", async (c) => {
+  const name = c.req.param('uniquecode')
+  const deletedProvince = await prisma.province.delete ({
+    where: {
+      uniqueCode: name
+    }
+  })
+  return c.json({
+    status: "success",
+    message: "successfully deleted a province",
+    data: deletedProvince
+  })
 })
 
 

@@ -16,6 +16,7 @@ datasource db {
 model Province {
   id             Int       @id @default(autoincrement())
   name           String
+  uniqueCode     String    @unique
   capital_city   String
   population     Int?
   area_size      Float?
@@ -32,6 +33,7 @@ model Province {
 model EthnicGroup {
   id           Int      @id @default(autoincrement())
   name         String
+  uniqueCode   String   @unique
   provinceId   Int
   province     Province @relation(fields: [provinceId], references: [id], onDelete: Cascade)
   createdAt    DateTime @default(now())
@@ -43,6 +45,7 @@ model EthnicGroup {
 model Culture {
   id              Int      @id @default(autoincrement())
   name            String
+  uniqueCode      String   @unique
   category        String
   description     String?
   provinceId      Int
@@ -56,6 +59,7 @@ model Culture {
 model RegionalSong {
   id           Int      @id @default(autoincrement())
   title        String
+  uniqueCode   String   @unique
   composer     String?
   provinceId   Int
   province     Province @relation(fields: [provinceId], references: [id], onDelete: Cascade)
@@ -68,6 +72,7 @@ model RegionalSong {
 model Cuisine {
   id           Int      @id @default(autoincrement())
   name         String
+  uniqueCode   String   @unique
   description  String?
   provinceId   Int
   province     Province @relation(fields: [provinceId], references: [id], onDelete: Cascade)
