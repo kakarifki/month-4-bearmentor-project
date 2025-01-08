@@ -13,56 +13,66 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Provinsi {
-  id              Int       @id @default(autoincrement())
-  nama_provinsi   String
-  ibu_kota        String
-  jumlah_penduduk Int?
-  luas_wilayah    Float?
-  suku            Suku[]
-  budaya          Budaya[]
-  lagu_daerah     LaguDaerah[]
-  kuliner         Kuliner[]
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+model Province {
+  id             Int       @id @default(autoincrement())
+  name           String
+  capital_city   String
+  population     Int?
+  area_size      Float?
+  ethnicgroups   EthnicGroup[]
+  cultures       Culture[]
+  regional_songs RegionalSong[]
+  cuisines       Cuisine[]
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@map("provinces")
 }
 
-model Suku {
+model EthnicGroup {
   id           Int      @id @default(autoincrement())
-  nama_suku    String
-  id_provinsi  Int
-  provinsi     Provinsi @relation(fields: [id_provinsi], references: [id], onDelete: Cascade)
+  name         String
+  provinceId   Int
+  province     Province @relation(fields: [provinceId], references: [id], onDelete: Cascade)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+
+  @@map("ethnicgroups")
 }
 
-model Budaya {
-  id             Int      @id @default(autoincrement())
-  nama_budaya    String
-  kategori_budaya String
-  deskripsi      String?
-  id_provinsi    Int
-  provinsi       Provinsi @relation(fields: [id_provinsi], references: [id], onDelete: Cascade)
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+model Culture {
+  id              Int      @id @default(autoincrement())
+  name            String
+  category        String
+  description     String?
+  provinceId      Int
+  province        Province @relation(fields: [provinceId], references: [id], onDelete: Cascade)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("cultures")
 }
 
-model LaguDaerah {
+model RegionalSong {
   id           Int      @id @default(autoincrement())
-  judul_lagu   String
-  pencipta     String?
-  id_provinsi  Int
-  provinsi     Provinsi @relation(fields: [id_provinsi], references: [id], onDelete: Cascade)
+  title        String
+  composer     String?
+  provinceId   Int
+  province     Province @relation(fields: [provinceId], references: [id], onDelete: Cascade)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+
+  @@map("regionalsongs")
 }
 
-model Kuliner {
+model Cuisine {
   id           Int      @id @default(autoincrement())
-  nama_kuliner String
-  deskripsi    String?
-  id_provinsi  Int
-  provinsi     Provinsi @relation(fields: [id_provinsi], references: [id], onDelete: Cascade)
+  name         String
+  description  String?
+  provinceId   Int
+  province     Province @relation(fields: [provinceId], references: [id], onDelete: Cascade)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+  
+  @@map("cuisines")
 }

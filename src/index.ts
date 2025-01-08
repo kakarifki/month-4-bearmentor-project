@@ -12,10 +12,10 @@ app.get("/", (c) => {
 
 //insert provinsi
 app.post("seed/provinsi", async (c) => {
- const insertedProvinsi = await prisma.provinsi.createMany({
+ const insertedProvinsi = await prisma.province.createMany({
   data: [
-    { nama_provinsi: "DKI Jakarta", ibu_kota: "Jakarta", jumlah_penduduk: 10672100, luas_wilayah:661.5 },
-    { nama_provinsi: "Jawa Barat", ibu_kota: "Bandung", jumlah_penduduk: 49935858, luas_wilayah:35377.76 } 
+    { name: "DKI Jakarta", capital_city: "Jakarta", population: 10672100, area_size: 35377.76}, 
+    { name: "Jawa Barat", capital_city: "Bandung", population: 49935858, area_size:35377.76}
   ],
  });
  return c.json(insertedProvinsi, 201)
