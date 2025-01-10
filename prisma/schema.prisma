@@ -42,11 +42,18 @@ model EthnicGroup {
   @@map("ethnicgroups")
 }
 
+enum CultureCategory {
+  DANCE
+  TRADITIONAL_CLOTHING
+  TRADITIONAL_HOUSE
+}
+
+
 model Culture {
   id              Int       @id @default(autoincrement())
   name            String
   cultureCode     String    @unique
-  category        String
+  category        CultureCategory
   description     String?
   provinceCode    String
   province        Province  @relation(fields: [provinceCode], references: [provinceCode], onDelete: Cascade)
