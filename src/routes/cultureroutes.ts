@@ -1,5 +1,5 @@
-import { Hono } from 'hono'
-import * as z from 'zod'
+import { OpenAPIHono, createRoute, z } from '@hono/zod-openapi';
+
 import {
   createCulture,
   getCultures,
@@ -9,8 +9,11 @@ import {
 } from '../models/culture'
 import { getProvinceByCode } from '../models/province'
 
-// Define the Zod schema for the enum
-const cultureCategoryEnum = z.enum(['DANCE', 'TRADITIONAL_CLOTHING', 'TRADITIONAL_HOUSE'])
+// Define the Zod schema for the enum + example
+const cultureCategoryEnum = z.enum(['DANCE', 'TRADITIONAL_CLOTHING', 'TRADITIONAL_HOUSE']).openapi({
+    description: 'Category of culture',
+    example: 'DANCE', // Menggunakan `example` di metadata, bukan `examples`
+});
 
 // Define the Zod schema for the culture
 const cultureSchema = z.object({
@@ -21,42 +24,106 @@ const cultureSchema = z.object({
   provinceCode: z.string(),
 })
 
-const router = new Hono()
+// Schema untuk Path Parameters
+const ParamsSchema = z.object({
+    code: z.string().openapi({
+        param: {
+            name: 'code',
+            in: 'path',
+        },
+        example: 'JKT123',
+    }),
+});
 
-router.get('/', async (c) => {
-  const cultures = await getCultures()
-  return c.json(
-    {
-      status: 'success',
-      message: 'Successfully retrieved cultures',
-      data: cultures,
-    },
-    200
-  )
-})
+// Schema untuk Request Body
+const createCultureSchema = z.object({
+    name: z.string(),
+    cultureCode: z.string().max(10),
+    category: cultureCategoryEnum,
+    provinceCode: z.string(),
+});
 
-router.get('/:code', async (c) => {
-  const code = c.req.param('code')
-  const culture = await getCultureByCode(code)
-  if (culture) {
-    return c.json(
-      {
-        status: 'success',
-        message: 'Successfully retrieved culture',
-        data: culture,
-      },
-      200
-    )
-  } else {
-    return c.json(
-      {
-        status: 'error',
-        message: `Culture with code ${code} not found`,
-      },
-      404
-    )
-  }
-})
+// Schema untuk Response
+const cultureResponseSchema = z.object({
+    id: z.number(),
+    name: z.string(),
+    cultureCode: z.string(),
+    category: cultureCategoryEnum,
+    provinceCode: z.string(),
+});
+
+const responseWrapperSchema = z.object({
+    status: z.string(),
+    message: z.string(),
+    data: z.array(cultureResponseSchema),
+});
+
+
+
+
+const router = new OpenAPIHono();
+
+// GET /cultures openAPI
+
+router.openapi(
+    createRoute({
+        method: "get",
+        path: "/",
+        responses: {
+            200: {
+                description: 'Retrieve all cultures',
+                content: {
+                    "application/json": {
+                        schema: responseWrapperSchema,
+                    },
+                },
+            },
+        },
+    }),
+    async (c) => {
+        const cultures = await getCultures();
+        return c.json ({
+            status: 'success',
+            message: 'Successfully retrieved cultures',
+            data: cultures
+        })
+    }
+)
+
+// router.get('/', async (c) => {
+//   const cultures = await getCultures()
+//   return c.json(
+//     {
+//       status: 'success',
+//       message: 'Successfully retrieved cultures',
+//       data: cultures,
+//     },
+//     200
+//   )
+// })
+
+// router.get('/:code', async (c) => {
+//   const code = c.req.param('code')
+//   const culture = await getCultureByCode(code)
+//   if (culture) {
+//     return c.json(
+//       {
+//         status: 'success',
+//         message: 'Successfully retrieved culture',
+//         data: culture,
+//       },
+//       200
+//     )
+//   } else {
+//     return c.json(
+//       {
+//         status: 'error',
+//         message: `Culture with code ${code} not found`,
+//       },
+//       404
+//     )
+//   }
+// })
 
 router.post('/', async (c) => {
   try {
