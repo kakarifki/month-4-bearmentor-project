@@ -1,5 +1,4 @@
-import { Hono } from "hono";
-import * as z from "zod";
+import { OpenAPIHono, createRoute, z } from '@hono/zod-openapi'
 import {
     createProvince,
     getProvinces,
@@ -7,7 +6,11 @@ import {
     updateProvince,
     deleteProvince
 } from '../models/province'
+import app from '../app';
 
+const API_TAG = ['Provinces']
+
+// Zod schema for Province
 const provinceSchema = z.object({
     name: z.string(),
     provinceCode: z.string().max(10),
@@ -16,136 +19,273 @@ const provinceSchema = z.object({
     area_size: z.number().optional(),
 })
 
-const router = new Hono()
-
-router.get('/', async (c) => {
-  const provinces = await getProvinces()
-  return c.json(
-    {
-      status: 'success',
-      message: 'Successfully retrieved provinces',
-      data: provinces,
+// Zod Schema for params
+const paramsSchema = z.object({
+  code: z.string().openapi({
+    param: {
+      name: 'code',
+      in: 'path',
     },
-    200
-  )
+    example: 'dki'
+  }),
+});
+
+// Zod schema for create Province
+const createProvinceSchema = z.object({
+  name: z.string(),
+  provinceCode: z.string().max(10),
+  capital_city: z.string(),
+  population: z.number().optional(),
+  area_size: z.number().optional()
 })
 
-router.get('/:code', async (c) => {
-  const code = c.req.param('code')
-  const province = await getProvinceByCode(code)
-  if (province) {
-    return c.json(
-      {
+// Zod Schema for Query Province
+const queryProvinceSchema = z.object({
+  name: z.string().optional(),
+  capital_city: z.string().optional()
+})
+
+
+const router = new OpenAPIHono()
+
+// GET all Provinces
+
+router.openapi(
+  createRoute({
+    method: "get",
+    path: "/",
+    description: "Show All Province in Indonesia",
+    request: {
+      query: queryProvinceSchema
+    },
+    responses: {
+      200: {
+        description: 'Retrieve all province'
+      },
+    },
+    tags: API_TAG
+  }),
+  async (c) => {
+    const provinces = await getProvinces();
+    return c.json({
+      status: 'success',
+      message: 'Successfully retrieved provinces',
+      data: provinces
+    })
+  }
+);
+
+// Get Province by code
+router.openapi(
+  createRoute({
+    method: "get",
+    path: "/{code}",
+    description: 'Show Province by Province Code',
+    request: {
+      params: paramsSchema,
+    },
+    responses: {
+      200: {
+        description: 'Retrieve a Province by code'
+      },
+      404: {
+        description: 'Province not found'
+      },
+    },
+    tags: API_TAG
+  }),
+  async (c) => {
+    const code = c.req.param('code');
+    const province = await getProvinceByCode(code);
+    if (province) {
+      return c.json({
         status: 'success',
         message: 'Successfully retrieved province',
         data: province,
-      },
-      200
-    )
-  } else {
+      });
+    }
     return c.json(
       {
         status: 'error',
-        message: `Province with code ${code} not found`,
+        message:  `Province with code ${code} not found`,
       },
       404
-    )
+    );
   }
-})
+);
 
-router.post('/', async (c) => {
-  try {
-    const data = await c.req.json()
-    provinceSchema.parse(data)
-    const newProvince = await createProvince(data)
-    return c.json(
-      {
-        status: 'success',
-        message: 'Successfully created province',
-        data: newProvince,
+// Post /provinces
+router.openapi(
+  createRoute({
+    method: 'post',
+    path: '/',
+    description: "Add New Province",
+    request: {
+      body: {
+        content: {
+          'application/json': {
+            schema: createProvinceSchema,
+          },
+        }
+      }
+    },
+    responses: {
+      201: {
+        description: 'Successfully created Province'
       },
-      201
-    )
-  } catch (error) {
-    return c.json(
-      {
-        status: 'error',
-        message: 'Failed to create province',
-        error: error instanceof Error ? error.message : String(error),
-      },
-      400
-    )
-  }
-})
-
-router.patch('/:code', async (c) => {
-  const code = c.req.param('code')
-  try {
-    const data = await c.req.json()
-    const updatedProvince = await updateProvince(code, data)
-    if (updatedProvince) {
+      400: {
+        description: 'Failed to create Province'
+      }
+    },
+    tags: API_TAG
+  }),
+  async (c) => {
+    try {
+      const data = await c.req.json()
+      provinceSchema.parse(data)
+      const newProvince = await createProvince(data)
       return c.json(
         {
           status: 'success',
-          message: 'Successfully updated province',
-          data: updatedProvince,
+          message: 'Successfully created Province',
+          data: newProvince,
         },
-        200
+        201
       )
-    } else {
+    } catch (error) {
       return c.json(
         {
           status: 'error',
-          message: `Province with code ${code} not found`,
+          message: 'Failed to create Province',
+          error: error instanceof Error ? error.message : String(error),
         },
-        404
+        400
       )
     }
-  } catch (error) {
-    return c.json(
-      {
-        status: 'error',
-        message: 'Failed to update province',
-        error: error instanceof Error ? error.message : String(error),
-      },
-      400
-    )
   }
-})
+)
 
-router.delete('/:code', async (c) => {
-  const code = c.req.param('code')
-  try {
-    const deletedProvince = await deleteProvince(code)
-    if (deletedProvince) {
-      return c.json(
-        {
-          status: 'success',
-          message: 'Successfully deleted province',
-          data: deletedProvince,
+// Patch /provinces/:code
+router.openapi(
+  createRoute({
+    method: 'patch',
+    path: '/{code}',
+    description: 'Update an existing Province',
+    request: {
+      params: paramsSchema,
+      body: {
+        content: {
+          'application/json': {
+            schema: provinceSchema.partial(),
+          },
         },
-        200
-      )
-    } else {
+      }
+    },
+    responses: {
+      200: {
+        description: 'Successfully updated Province',
+      },
+      400: {
+        description: 'Failed to updated Province',
+      },
+      404: {
+        description: 'Province not found'
+      }
+    },
+    tags: API_TAG
+  }),
+  async (c) => {
+    const code = c.req.param('code')
+    try {
+      const data = await c.req.json()
+      const updatedProvince = await updateProvince(code, data)
+      if (updateProvince) {
+        return c.json(
+          {
+            status: 'success',
+            message: 'successfully updated province',
+            data: updateProvince
+          },
+          200
+        )
+      } else {
+        return c.json(
+          {
+            status: 'error',
+            message: `Province with code ${code} not found`,
+          },
+          404
+        )
+      }
+    } catch (error) {
       return c.json(
         {
           status: 'error',
-          message: `Province with code ${code} not found`,
+          message: 'Failed to update Province',
+          error: error instanceof Error ? error.message : String(error),
         },
-        404
+        400
       )
     }
-  } catch (error) {
-    return c.json(
-      {
-        status: 'error',
-        message: 'Failed to delete province',
-        error: error instanceof Error ? error.message : String(error),
-      },
-      400
-    )
   }
-})
+)
+
+// Delete /Province/:code
+router.openapi(
+  createRoute({
+    method: 'delete',
+    path: '/{code}',
+    description: "Delete a Province",
+    request: {
+      params: paramsSchema,
+    },
+    responses: {
+      200: {
+        description: 'Successfully deleted a Province'
+      },
+      400: {
+        description: "Failed to delete a Provice"
+      },
+      404: {
+        description: "Province not found"
+      }
+    },
+    tags: API_TAG
+  }),
+  async (c) => {
+    const code = c.req.param('code')
+    try {
+      const deletedProvince = await deleteProvince(code)
+      if (deleteProvince) {
+        return c.json(
+          {
+            status: 'success',
+            message: 'Successfully deleted a Province',
+            data: deleteProvince
+          },
+          200
+        )
+      } else {
+        return c.json(
+          {
+            status: 'error',
+            message: `Province with code ${code} not found`
+          }
+        )
+      }
+    } catch (error) {
+      return c.json(
+        {
+          status: 'error',
+          message: 'Failed to delete province',
+          error: error instanceof Error ? error.message : String(error),
+        },
+        400
+      )
+    }
+  }
+)
+
 
 
 export default router

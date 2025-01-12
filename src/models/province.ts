@@ -6,12 +6,25 @@ export const createProvince = async (data: any) => {
 }
 
 export const getProvinces = async () => {
-    return await prisma.province.findMany()
+    return await prisma.province.findMany({
+      include: {
+        ethnicgroups: true,
+        cultures: true,
+        regional_songs: true,
+        cuisines: true,
+      }
+    })
   }
 
 export const getProvinceByCode = async (provinceCode: string) => {
   return await prisma.province.findUnique({ 
-        where: { provinceCode } 
+        where: { provinceCode },
+        include: {
+          ethnicgroups: true,
+          cultures: true,
+          regional_songs: true,
+          cuisines: true,
+        }
     })
 }
 
