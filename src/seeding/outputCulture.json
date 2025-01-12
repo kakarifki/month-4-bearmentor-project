@@ -1,0 +1,240 @@
+[
+  {
+    "name": "Tari Saman",
+    "cultureCode": "saman",
+    "category": "DANCE",
+    "description": "Tarian tradisional Aceh yang dimainkan oleh sekelompok pria dengan gerakan yang sinkron dan dinamis.",
+    "provinceCode": "aceh"
+  },
+  {
+    "name": "Ulos",
+    "cultureCode": "ulos",
+    "category": "TRADITIONAL_CLOTHING",
+    "description": "Kain tenun tradisional Batak yang memiliki makna simbolis dan digunakan dalam berbagai upacara adat.",
+    "provinceCode": "sumut"
+  },
+  {
+    "name": "Rumah Gadang",
+    "cultureCode": "gadang",
+    "category": "TRADITIONAL_HOUSE",
+    "description": "Rumah adat Minangkabau dengan atap yang melengkung seperti tanduk kerbau.",
+    "provinceCode": "sumbar"
+  },
+  {
+    "name": "Tari Zapin",
+    "cultureCode": "zapin",
+    "category": "DANCE",
+    "description": "Tarian Melayu yang dipengaruhi budaya Arab dan Persia.",
+    "provinceCode": "riau"
+  },
+  {
+    "name": "Batik Jambi",
+    "cultureCode": "batikjambi",
+    "category": "TRADITIONAL_CLOTHING",
+    "description": "Kain batik khas Jambi dengan motif yang beragam.",
+    "provinceCode": "jambi"
+  },
+  {
+    "name": "Rumah Limas",
+    "cultureCode": "limas",
+    "category": "TRADITIONAL_HOUSE",
+    "description": "Rumah adat Sumatera Selatan dengan bentuk atap yang khas.",
+    "provinceCode": "sumsel"
+  },
+  {
+    "name": "Tari Andun",
+    "cultureCode": "andun",
+    "category": "DANCE",
+    "description": "Tarian tradisional Bengkulu yang ditarikan saat upacara pernikahan atau panen.",
+    "provinceCode": "bengkulu"
+  },
+  {
+    "name": "Kain Tapis",
+    "cultureCode": "tapis",
+    "category": "TRADITIONAL_CLOTHING",
+    "description": "Kain tenun khas Lampung dengan hiasan sulam benang emas.",
+    "provinceCode": "lampung"
+  },
+  {
+    "name": "Rumah Rakit",
+    "cultureCode": "rakit",
+    "category": "TRADITIONAL_HOUSE",
+    "description": "Rumah adat Bangka Belitung yang dibangun di atas rakit.",
+    "provinceCode": "babel"
+  },
+  {
+    "name": "Baju Kurung",
+    "cultureCode": "kurung",
+    "category": "TRADITIONAL_CLOTHING",
+    "description": "Pakaian adat Kepulauan Riau yang longgar dan sopan.",
+    "provinceCode": "kepri"
+  },
+  {
+    "name": "Ondel-Ondel",
+    "cultureCode": "ondel",
+    "category": "DANCE",
+    "description": "Boneka besar yang menjadi ikon budaya Betawi.",
+    "provinceCode": "dki"
+  },
+  {
+    "name": "Kebaya Sunda",
+    "cultureCode": "kebayasunda",
+    "category": "TRADITIONAL_CLOTHING",
+    "description": "Pakaian tradisional wanita Sunda yang elegan.",
+    "provinceCode": "jabar"
+  },
+  {
+    "name": "Rumah Joglo",
+    "cultureCode": "joglo",
+    "category": "TRADITIONAL_HOUSE",
+    "description": "Rumah adat Jawa Tengah dengan ciri khas atap yang bertingkat.",
+    "provinceCode": "jateng"
+  },
+  {
+    "name": "Tari Serimpi",
+    "cultureCode": "serimpi",
+    "category": "DANCE",
+    "description": "Tarian klasik Jawa yang ditarikan oleh perempuan dengan gerakan yang gemulai.",
+    "provinceCode": "diy"
+  },
+  {
+    "name": "Pakaian Adat Jawa Timur",
+    "cultureCode": "pakaiantimur",
+    "category": "TRADITIONAL_CLOTHING",
+    "description": "Pakaian adat Jawa Timur yang beragam, seperti Pesa'an dan Kebaya.",
+    "provinceCode": "jatim"
+  },
+  {
+    "name": "Rumah Adat Baduy",
+    "cultureCode": "baduyhouse",
+    "category": "TRADITIONAL_HOUSE",
+    "description": "Rumah adat suku Baduy yang sederhana dan menyatu dengan alam.",
+    "provinceCode": "banten"
+  },
+  {
+    "name": "Tari Pendet",
+    "cultureCode": "pendet",
+    "category": "DANCE",
+    "description": "Tarian penyambutan khas Bali.",
+    "provinceCode": "bali"
+  },
+  {
+    "name": "Songket",
+    "cultureCode": "songket",
+    "category": "TRADITIONAL_CLOTHING",
+    "description": "Kain tenun khas Nusa Tenggara Barat dengan benang emas dan perak.",
+    "provinceCode": "ntb"
+  },
+  {
+    "name": "Rumah Musalaki",
+    "cultureCode": "musalaki",
+    "category": "TRADITIONAL_HOUSE",
+    "description": "Rumah adat Nusa Tenggara Timur yang berbentuk kerucut.",
+    "provinceCode": "ntt"
+  },
+  {
+    "name": "Tari Zapin Tembung",
+    "cultureCode": "zapintembung",
+    "category": "DANCE",
+    "description": "Tarian tradisional Kalimantan Barat yang dipengaruhi budaya Melayu.",
+    "provinceCode": "kalbar"
+  },
+  {
+    "name": "Rumah Betang",
+    "cultureCode": "betang",
+    "category": "TRADITIONAL_HOUSE",
+    "description": "Rumah panjang tradisional Dayak di Kalimantan Tengah.",
+    "provinceCode": "kalteng"
+  },
+  {
+    "name": "Baju Adat Banjar",
+    "cultureCode": "bajuadbanjar",
+    "category": "TRADITIONAL_CLOTHING",
+    "description": "Pakaian adat suku Banjar di Kalimantan Selatan.",
+    "provinceCode": "kalsel"
+  },
+  {
+    "name": "Rumah Lamin",
+    "cultureCode": "lamin",
+    "category": "TRADITIONAL_HOUSE",
+    "description": "Rumah adat Kalimantan Timur yang besar dan panjang.",
+    "provinceCode": "kaltim"
+  },
+  {
+    "name": "Tari Magunatip",
+    "cultureCode": "magunatip",
+    "category": "DANCE",
+    "description": "Tarian tradisional Kalimantan Utara yang menggunakan bambu.",
+    "provinceCode": "kaltara"
+  },
+  {
+    "name": "Tari Maengket",
+    "cultureCode": "maengket",
+    "category": "DANCE",
+    "description": "Tarian tradisional Sulawesi Utara yang ditarikan saat panen atau upacara adat.",
+    "provinceCode": "sulut"
+  },
+  {
+    "name": "Rumah Souraja",
+    "cultureCode": "souraja",
+    "category": "TRADITIONAL_HOUSE",
+    "description": "Rumah adat Sulawesi Tengah yang berbentuk panggung.",
+    "provinceCode": "sulteng"
+  },
+  {
+    "name": "Baju Bodo",
+    "cultureCode": "bajubodo",
+    "category": "TRADITIONAL_CLOTHING",
+    "description": "Pakaian adat Sulawesi Selatan yang berwarna cerah.",
+    "provinceCode": "sulsel"
+  },
+  {
+    "name": "Tari Lulo",
+    "cultureCode": "lulo",
+    "category": "DANCE",
+    "description": "Tarian tradisional Sulawesi Tenggara yang ditarikan secara berkelompok.",
+    "provinceCode": "sultra"
+  },
+  {
+    "name": "Rumah Adat Dulohupa",
+    "cultureCode": "dulohupa",
+    "category": "TRADITIONAL_HOUSE",
+    "description": "Rumah adat Gorontalo yang berbentuk panggung dengan ornamen khas.",
+    "provinceCode": "goron"
+  },
+  {
+    "name": "Pakaian Adat Mandar",
+    "cultureCode": "pakaiandar",
+    "category": "TRADITIONAL_CLOTHING",
+    "description": "Pakaian adat Sulawesi Barat yang dipengaruhi budaya Bugis dan Makassar.",
+    "provinceCode": "sulbar"
+  },
+  {
+    "name": "Tari Cakalele",
+    "cultureCode": "cakalele",
+    "category": "DANCE",
+    "description": "Tarian perang tradisional Maluku.",
+    "provinceCode": "maluku"
+  },
+  {
+    "name": "Rumah Baileo",
+    "cultureCode": "baileo",
+    "category": "TRADITIONAL_HOUSE",
+    "description": "Rumah adat Maluku yang berfungsi sebagai tempat pertemuan adat.",
+    "provinceCode": "malut"
+  },
+  {
+    "name": "Tari Yospan",
+    "cultureCode": "yospan",
+    "category": "DANCE",
+    "description": "Tarian tradisional Papua yang ditarikan dalam berbagai acara.",
+    "provinceCode": "papua"
+  },
+  {
+    "name": "Honai",
+    "cultureCode": "honai",
+    "category": "TRADITIONAL_HOUSE",
+    "description": "Rumah adat Papua yang berbentuk bulat dengan atap jerami.",
+    "provinceCode": "papuabarat"
+  }
+]

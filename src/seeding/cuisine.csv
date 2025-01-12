@@ -1,0 +1,35 @@
+name,cuisineCode,description,provinceCode
+Mie Aceh,mieaceh,"Mie tebal dengan bumbu rempah yang kaya, disajikan dengan daging, seafood, atau telur.",aceh
+Bika Ambon,bikaambon,"Kue berwarna kuning dengan tekstur berongga, terbuat dari tepung tapioka, santan, dan gula.",sumut
+Rendang,rendang,"Daging yang dimasak dalam santan dan bumbu rempah dalam waktu lama hingga kering dan berwarna gelap.",sumbar
+Gulai Ikan Patin,gulaipatin,"Ikan patin yang dimasak dengan kuah gulai kuning yang kaya rempah.",riau
+Tempoyak,tempoyak,"Durian yang difermentasi, biasanya dimasak sebagai sambal atau campuran masakan lain.",jambi
+Pempek,pempek,"Makanan khas Palembang yang terbuat dari ikan dan tepung tapioka, disajikan dengan kuah cuko.",sumsel
+Pendap,pendap,"Makanan khas Bengkulu berupa ikan yang dimasak dengan bumbu rempah dan dibungkus daun talas.",bengkulu
+Seruit,seruit,"Ikan bakar yang disajikan dengan sambal terasi dan lalapan.",lampung
+Otak-Otak,otakotak,"Makanan yang terbuat dari ikan tenggiri yang dibungkus daun pisang dan dibakar.",babel
+Gonggong,gonggong,"Siput laut yang direbus dan disajikan dengan sambal.",kepri
+Kerak Telor,keraktelor,"Makanan khas Betawi yang terbuat dari ketan putih, telur, ebi, dan bawang goreng.",dki
+Siomay Bandung,siomaybdg,"Makanan yang terbuat dari ikan tenggiri, disajikan dengan bumbu kacang, kecap, dan saus.",jabar
+Lumpia Semarang,lumpiaSMG,"Makanan berisi rebung, telur, dan daging, dibungkus kulit lumpia dan digoreng.",jateng
+Gudeg,gudeg,"Nangka muda yang dimasak dengan santan dan bumbu rempah dalam waktu lama.",diy
+Rawon,rawon,"Sup daging dengan kuah berwarna hitam yang khas karena penggunaan kluwek.",jatim
+Sate Bandeng,satebandeng,"Sate yang terbuat dari ikan bandeng yang dihilangkan durinya, kemudian dibumbui dan dibakar.",banten
+Ayam Betutu,ayambetutu,"Ayam yang dibumbui rempah-rempah dan dipanggang atau direbus dalam waktu lama.",bali
+Ayam Taliwang,ayamtaliwang,"Ayam bakar yang dibumbui pedas khas Lombok.",ntb
+Sei Sapi,seisapi,"Daging sapi yang diasap dengan kayu bakar hingga matang dan beraroma khas.",ntt
+Bubur Pedas,buburpedas,"Bubur dengan campuran sayuran dan rempah-rempah yang memberikan rasa pedas.",kalbar
+Juhu Singkah,juhusingkah,"Sayur umbut rotan yang dimasak dengan santan dan bumbu rempah.",kalteng
+Soto Banjar,sotobanjar,"Soto dengan kuah susu dan rempah-rempah yang kaya, disajikan dengan perkedel dan sate ayam.",kalsel
+Nasi Kuning,nasikuning,"Nasi yang dimasak dengan kunyit dan santan, biasanya disajikan dengan lauk pauk.",kaltim
+Kepiting Soka,kepiting,"Kepiting soka yang digoreng renyah dan disajikan dengan berbagai saus.",kaltara
+Tinutuan (Bubur Manado),tinutuan,"Bubur nasi yang dicampur dengan berbagai sayuran dan jagung.",sulut
+Palumara,palumara,"Sup ikan dengan kuah asam pedas yang segar.",sulteng
+Coto Makassar,cotomakassar,"Sup daging dan jeroan sapi dengan bumbu rempah yang kaya.",sulsel
+Sinonggi,sinonggi,"Makanan yang terbuat dari sari pati sagu yang dimasak dengan sayur dan ikan.",sultra
+Binte Biluhuta,binte,"Sup jagung dengan udang dan bumbu rempah.",goron
+Jepa,jepa,"Kue tradisional yang terbuat dari singkong parut dan kelapa.",sulbar
+Papeda,papeda,"Makanan berupa bubur sagu yang biasanya disajikan dengan ikan kuah kuning.",papua
+Ikan Bakar Manokwari,ikanbakar,"Ikan yang dibakar dengan bumbu rempah khas Papua.",papuabarat
+Gohu Ikan Tuna,gohuikan,"Ikan tuna mentah yang direndam dalam air jeruk nipis dan bumbu rempah.",maluku
+Papeda,papedamalut,"Makanan berupa bubur sagu yang biasanya disajikan dengan ikan kuah kuning.",malut

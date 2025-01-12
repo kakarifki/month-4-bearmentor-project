@@ -3,9 +3,9 @@ import fs from 'fs'
 
 // Konfigurasi model
 const config = {
-    model: 'EthnicGroup', // Ganti dengan nama model Anda: Province, EthnicGroup, Culture, RegionalSong, atau Cuisine
-    csvFilePath: './ethnic.csv', // Path ke file CSV
-    outputJsonFilePath: './outputEthnic.json', // Path file output JSON
+    model: 'Culture', // Ganti dengan nama model Anda: Province, EthnicGroup, Culture, RegionalSong, atau Cuisine
+    csvFilePath: './culture.csv', // Path ke file CSV
+    outputJsonFilePath: './outputCulture.json', // Path file output JSON
 }
 
 // Mapping kolom untuk setiap model

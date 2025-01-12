@@ -1,0 +1,206 @@
+[
+  {
+    "name": "Mie Aceh",
+    "cuisineCode": "mieaceh",
+    "description": "Mie tebal dengan bumbu rempah yang kaya, disajikan dengan daging, seafood, atau telur.",
+    "provinceCode": "aceh"
+  },
+  {
+    "name": "Bika Ambon",
+    "cuisineCode": "bikaambon",
+    "description": "Kue berwarna kuning dengan tekstur berongga, terbuat dari tepung tapioka, santan, dan gula.",
+    "provinceCode": "sumut"
+  },
+  {
+    "name": "Rendang",
+    "cuisineCode": "rendang",
+    "description": "Daging yang dimasak dalam santan dan bumbu rempah dalam waktu lama hingga kering dan berwarna gelap.",
+    "provinceCode": "sumbar"
+  },
+  {
+    "name": "Gulai Ikan Patin",
+    "cuisineCode": "gulaipatin",
+    "description": "Ikan patin yang dimasak dengan kuah gulai kuning yang kaya rempah.",
+    "provinceCode": "riau"
+  },
+  {
+    "name": "Tempoyak",
+    "cuisineCode": "tempoyak",
+    "description": "Durian yang difermentasi, biasanya dimasak sebagai sambal atau campuran masakan lain.",
+    "provinceCode": "jambi"
+  },
+  {
+    "name": "Pempek",
+    "cuisineCode": "pempek",
+    "description": "Makanan khas Palembang yang terbuat dari ikan dan tepung tapioka, disajikan dengan kuah cuko.",
+    "provinceCode": "sumsel"
+  },
+  {
+    "name": "Pendap",
+    "cuisineCode": "pendap",
+    "description": "Makanan khas Bengkulu berupa ikan yang dimasak dengan bumbu rempah dan dibungkus daun talas.",
+    "provinceCode": "bengkulu"
+  },
+  {
+    "name": "Seruit",
+    "cuisineCode": "seruit",
+    "description": "Ikan bakar yang disajikan dengan sambal terasi dan lalapan.",
+    "provinceCode": "lampung"
+  },
+  {
+    "name": "Otak-Otak",
+    "cuisineCode": "otakotak",
+    "description": "Makanan yang terbuat dari ikan tenggiri yang dibungkus daun pisang dan dibakar.",
+    "provinceCode": "babel"
+  },
+  {
+    "name": "Gonggong",
+    "cuisineCode": "gonggong",
+    "description": "Siput laut yang direbus dan disajikan dengan sambal.",
+    "provinceCode": "kepri"
+  },
+  {
+    "name": "Kerak Telor",
+    "cuisineCode": "keraktelor",
+    "description": "Makanan khas Betawi yang terbuat dari ketan putih, telur, ebi, dan bawang goreng.",
+    "provinceCode": "dki"
+  },
+  {
+    "name": "Siomay Bandung",
+    "cuisineCode": "siomaybdg",
+    "description": "Makanan yang terbuat dari ikan tenggiri, disajikan dengan bumbu kacang, kecap, dan saus.",
+    "provinceCode": "jabar"
+  },
+  {
+    "name": "Lumpia Semarang",
+    "cuisineCode": "lumpiaSMG",
+    "description": "Makanan berisi rebung, telur, dan daging, dibungkus kulit lumpia dan digoreng.",
+    "provinceCode": "jateng"
+  },
+  {
+    "name": "Gudeg",
+    "cuisineCode": "gudeg",
+    "description": "Nangka muda yang dimasak dengan santan dan bumbu rempah dalam waktu lama.",
+    "provinceCode": "diy"
+  },
+  {
+    "name": "Rawon",
+    "cuisineCode": "rawon",
+    "description": "Sup daging dengan kuah berwarna hitam yang khas karena penggunaan kluwek.",
+    "provinceCode": "jatim"
+  },
+  {
+    "name": "Sate Bandeng",
+    "cuisineCode": "satebandeng",
+    "description": "Sate yang terbuat dari ikan bandeng yang dihilangkan durinya, kemudian dibumbui dan dibakar.",
+    "provinceCode": "banten"
+  },
+  {
+    "name": "Ayam Betutu",
+    "cuisineCode": "ayambetutu",
+    "description": "Ayam yang dibumbui rempah-rempah dan dipanggang atau direbus dalam waktu lama.",
+    "provinceCode": "bali"
+  },
+  {
+    "name": "Ayam Taliwang",
+    "cuisineCode": "ayamtaliwang",
+    "description": "Ayam bakar yang dibumbui pedas khas Lombok.",
+    "provinceCode": "ntb"
+  },
+  {
+    "name": "Sei Sapi",
+    "cuisineCode": "seisapi",
+    "description": "Daging sapi yang diasap dengan kayu bakar hingga matang dan beraroma khas.",
+    "provinceCode": "ntt"
+  },
+  {
+    "name": "Bubur Pedas",
+    "cuisineCode": "buburpedas",
+    "description": "Bubur dengan campuran sayuran dan rempah-rempah yang memberikan rasa pedas.",
+    "provinceCode": "kalbar"
+  },
+  {
+    "name": "Juhu Singkah",
+    "cuisineCode": "juhusingkah",
+    "description": "Sayur umbut rotan yang dimasak dengan santan dan bumbu rempah.",
+    "provinceCode": "kalteng"
+  },
+  {
+    "name": "Soto Banjar",
+    "cuisineCode": "sotobanjar",
+    "description": "Soto dengan kuah susu dan rempah-rempah yang kaya, disajikan dengan perkedel dan sate ayam.",
+    "provinceCode": "kalsel"
+  },
+  {
+    "name": "Nasi Kuning",
+    "cuisineCode": "nasikuning",
+    "description": "Nasi yang dimasak dengan kunyit dan santan, biasanya disajikan dengan lauk pauk.",
+    "provinceCode": "kaltim"
+  },
+  {
+    "name": "Kepiting Soka",
+    "cuisineCode": "kepiting",
+    "description": "Kepiting soka yang digoreng renyah dan disajikan dengan berbagai saus.",
+    "provinceCode": "kaltara"
+  },
+  {
+    "name": "Tinutuan (Bubur Manado)",
+    "cuisineCode": "tinutuan",
+    "description": "Bubur nasi yang dicampur dengan berbagai sayuran dan jagung.",
+    "provinceCode": "sulut"
+  },
+  {
+    "name": "Palumara",
+    "cuisineCode": "palumara",
+    "description": "Sup ikan dengan kuah asam pedas yang segar.",
+    "provinceCode": "sulteng"
+  },
+  {
+    "name": "Coto Makassar",
+    "cuisineCode": "cotomakassar",
+    "description": "Sup daging dan jeroan sapi dengan bumbu rempah yang kaya.",
+    "provinceCode": "sulsel"
+  },
+  {
+    "name": "Sinonggi",
+    "cuisineCode": "sinonggi",
+    "description": "Makanan yang terbuat dari sari pati sagu yang dimasak dengan sayur dan ikan.",
+    "provinceCode": "sultra"
+  },
+  {
+    "name": "Binte Biluhuta",
+    "cuisineCode": "binte",
+    "description": "Sup jagung dengan udang dan bumbu rempah.",
+    "provinceCode": "goron"
+  },
+  {
+    "name": "Jepa",
+    "cuisineCode": "jepa",
+    "description": "Kue tradisional yang terbuat dari singkong parut dan kelapa.",
+    "provinceCode": "sulbar"
+  },
+  {
+    "name": "Papeda",
+    "cuisineCode": "papeda",
+    "description": "Makanan berupa bubur sagu yang biasanya disajikan dengan ikan kuah kuning.",
+    "provinceCode": "papua"
+  },
+  {
+    "name": "Ikan Bakar Manokwari",
+    "cuisineCode": "ikanbakar",
+    "description": "Ikan yang dibakar dengan bumbu rempah khas Papua.",
+    "provinceCode": "papuabarat"
+  },
+  {
+    "name": "Gohu Ikan Tuna",
+    "cuisineCode": "gohuikan",
+    "description": "Ikan tuna mentah yang direndam dalam air jeruk nipis dan bumbu rempah.",
+    "provinceCode": "maluku"
+  },
+  {
+    "name": "Papeda",
+    "cuisineCode": "papedamalut",
+    "description": "Makanan berupa bubur sagu yang biasanya disajikan dengan ikan kuah kuning.",
+    "provinceCode": "malut"
+  }
+]

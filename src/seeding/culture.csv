@@ -1,0 +1,35 @@
+name,cultureCode,category,description,provinceCode
+Tari Saman,saman,DANCE,"Tarian tradisional Aceh yang dimainkan oleh sekelompok pria dengan gerakan yang sinkron dan dinamis.",aceh
+Ulos,ulos,TRADITIONAL_CLOTHING,"Kain tenun tradisional Batak yang memiliki makna simbolis dan digunakan dalam berbagai upacara adat.",sumut
+Rumah Gadang,gadang,TRADITIONAL_HOUSE,"Rumah adat Minangkabau dengan atap yang melengkung seperti tanduk kerbau.",sumbar
+Tari Zapin,zapin,DANCE,"Tarian Melayu yang dipengaruhi budaya Arab dan Persia.",riau
+Batik Jambi,batikjambi,TRADITIONAL_CLOTHING,"Kain batik khas Jambi dengan motif yang beragam.",jambi
+Rumah Limas,limas,TRADITIONAL_HOUSE,"Rumah adat Sumatera Selatan dengan bentuk atap yang khas.",sumsel
+Tari Andun,andun,DANCE,"Tarian tradisional Bengkulu yang ditarikan saat upacara pernikahan atau panen.",bengkulu
+Kain Tapis,tapis,TRADITIONAL_CLOTHING,"Kain tenun khas Lampung dengan hiasan sulam benang emas.",lampung
+Rumah Rakit,rakit,TRADITIONAL_HOUSE,"Rumah adat Bangka Belitung yang dibangun di atas rakit.",babel
+Baju Kurung,kurung,TRADITIONAL_CLOTHING,"Pakaian adat Kepulauan Riau yang longgar dan sopan.",kepri
+Ondel-Ondel,ondel,DANCE,"Boneka besar yang menjadi ikon budaya Betawi.",dki
+Kebaya Sunda,kebayasunda,TRADITIONAL_CLOTHING,"Pakaian tradisional wanita Sunda yang elegan.",jabar
+Rumah Joglo,joglo,TRADITIONAL_HOUSE,"Rumah adat Jawa Tengah dengan ciri khas atap yang bertingkat.",jateng
+Tari Serimpi,serimpi,DANCE,"Tarian klasik Jawa yang ditarikan oleh perempuan dengan gerakan yang gemulai.",diy
+Pakaian Adat Jawa Timur,pakaiantimur,TRADITIONAL_CLOTHING,"Pakaian adat Jawa Timur yang beragam, seperti Pesa'an dan Kebaya.",jatim
+Rumah Adat Baduy,baduyhouse,TRADITIONAL_HOUSE,"Rumah adat suku Baduy yang sederhana dan menyatu dengan alam.",banten
+Tari Pendet,pendet,DANCE,"Tarian penyambutan khas Bali.",bali
+Songket,songket,TRADITIONAL_CLOTHING,"Kain tenun khas Nusa Tenggara Barat dengan benang emas dan perak.",ntb
+Rumah Musalaki,musalaki,TRADITIONAL_HOUSE,"Rumah adat Nusa Tenggara Timur yang berbentuk kerucut.",ntt
+Tari Zapin Tembung,zapintembung,DANCE,"Tarian tradisional Kalimantan Barat yang dipengaruhi budaya Melayu.",kalbar
+Rumah Betang,betang,TRADITIONAL_HOUSE,"Rumah panjang tradisional Dayak di Kalimantan Tengah.",kalteng
+Baju Adat Banjar,bajuadbanjar,TRADITIONAL_CLOTHING,"Pakaian adat suku Banjar di Kalimantan Selatan.",kalsel
+Rumah Lamin,lamin,TRADITIONAL_HOUSE,"Rumah adat Kalimantan Timur yang besar dan panjang.",kaltim
+Tari Magunatip,magunatip,DANCE,"Tarian tradisional Kalimantan Utara yang menggunakan bambu.",kaltara
+Tari Maengket,maengket,DANCE,"Tarian tradisional Sulawesi Utara yang ditarikan saat panen atau upacara adat.",sulut
+Rumah Souraja,souraja,TRADITIONAL_HOUSE,"Rumah adat Sulawesi Tengah yang berbentuk panggung.",sulteng
+Baju Bodo,bajubodo,TRADITIONAL_CLOTHING,"Pakaian adat Sulawesi Selatan yang berwarna cerah.",sulsel
+Tari Lulo,lulo,DANCE,"Tarian tradisional Sulawesi Tenggara yang ditarikan secara berkelompok.",sultra
+Rumah Adat Dulohupa,dulohupa,TRADITIONAL_HOUSE,"Rumah adat Gorontalo yang berbentuk panggung dengan ornamen khas.",goron
+Pakaian Adat Mandar,pakaiandar,TRADITIONAL_CLOTHING,"Pakaian adat Sulawesi Barat yang dipengaruhi budaya Bugis dan Makassar.",sulbar
+Tari Cakalele,cakalele,DANCE,"Tarian perang tradisional Maluku.",maluku
+Rumah Baileo,baileo,TRADITIONAL_HOUSE,"Rumah adat Maluku yang berfungsi sebagai tempat pertemuan adat.",malut
+Tari Yospan,yospan,DANCE,"Tarian tradisional Papua yang ditarikan dalam berbagai acara.",papua
+Honai,honai,TRADITIONAL_HOUSE,"Rumah adat Papua yang berbentuk bulat dengan atap jerami.",papuabarat

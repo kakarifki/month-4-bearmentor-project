@@ -70,6 +70,20 @@
     "area_size": 8201
   },
   {
+    "name": "DKI Jakarta",
+    "provinceCode": "dki",
+    "capital_city": "Jakarta",
+    "population": 10,
+    "area_size": 661
+  },
+  {
+    "name": "Jawa Barat",
+    "provinceCode": "jabar",
+    "capital_city": "Bandung",
+    "population": 48,
+    "area_size": 35377
+  },
+  {
     "name": "Jawa Tengah",
     "provinceCode": "jateng",
     "capital_city": "Semarang",
