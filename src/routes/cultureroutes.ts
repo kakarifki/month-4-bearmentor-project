@@ -70,16 +70,28 @@ router.openapi(
             200: {
                 description: 'Retrieve all cultures',
             },
+            404: {
+              description: 'No cultures found'
+            }
         },
         tags: API_TAG
     }),
     async (c) => {
         const cultures = await getCultures();
-        return c.json ({
+        if (cultures) {
+          return c.json ({
             status: 'success',
             message: 'Successfully retrieved cultures',
             data: cultures
         })
+        }
+        return c.json(
+          {
+            status: 'error',
+            message: `Cultures not found`,
+          },
+          404
+        );
     }
 )
 
@@ -229,20 +241,12 @@ router.openapi(
       }
 
       const updatedCulture = await updateCulture(code, data);
-      if (updatedCulture) {
         return c.json({
           status: 'success',
           message: 'Successfully updated culture',
           data: updatedCulture,
         });
-      }
-      return c.json(
-        {
-          status: 'error',
-          message: `Culture with code ${code} not found`,
-        },
-        404
-      );
+      
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
                     return c.json(
@@ -288,20 +292,12 @@ router.openapi(
     const code = c.req.param('code');
     try {
       const deletedCulture = await deleteCulture(code);
-      if (deletedCulture) {
-        return c.json({
+      return c.json({
           status: 'success',
           message: 'Successfully deleted culture',
           data: deletedCulture,
         });
-      }
-      return c.json(
-        {
-          status: 'error',
-          message: `Culture with code ${code} not found`,
-        },
-        404
-      );
+      
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
               return c.json(

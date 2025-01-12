@@ -58,16 +58,28 @@ router.openapi(
       200: {
         description: 'Retrieve all regional songs',
       },
+      404: {
+        description: 'No Regional Songs found'
+      }
     },
     tags: API_TAG,
   }),
   async (c) => {
     const regionalSongs = await getRegionalSongs();
-    return c.json({
-      status: 'success',
-      message: 'Successfully retrieved regional songs',
-      data: regionalSongs,
-    });
+    if (regionalSongs) {
+      return c.json({
+        status: 'success',
+        message: 'Successfully retrieved regional songs',
+        data: regionalSongs,
+      });
+    }
+    return c.json(
+      {
+        status: 'error',
+        message: `Regional Songs not found`,
+      },
+      404
+    );
   }
 );
 
@@ -217,20 +229,13 @@ router.openapi(
       }
 
       const updatedRegionalSong = await updateRegionalSong(code, data);
-      if (updatedRegionalSong) {
+
         return c.json({
           status: 'success',
           message: 'Successfully updated regional song',
           data: updatedRegionalSong,
         });
-      }
-      return c.json(
-        {
-          status: 'error',
-          message: `Regional song with code ${code} not found`,
-        },
-        404
-      );
+
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
                     return c.json(
@@ -276,20 +281,13 @@ router.openapi(
     const code = c.req.param('code');
     try {
       const deletedRegionalSong = await deleteRegionalSong(code);
-      if (deletedRegionalSong) {
+
         return c.json({
           status: 'success',
           message: 'Successfully deleted regional song',
           data: deletedRegionalSong,
         });
-      }
-      return c.json(
-        {
-          status: 'error',
-          message: `Regional song with code ${code} not found`,
-        },
-        404
-      );
+      
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
                     return c.json(

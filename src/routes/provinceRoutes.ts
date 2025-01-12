@@ -62,16 +62,29 @@ router.openapi(
       200: {
         description: 'Retrieve all province'
       },
+      404: {
+        description: 'No provinces found'
+      }
     },
     tags: API_TAG
   }),
   async (c) => {
     const provinces = await getProvinces();
-    return c.json({
-      status: 'success',
-      message: 'Successfully retrieved provinces',
-      data: provinces
-    })
+    if (provinces) {
+      return c.json({
+        status: 'success',
+        message: 'Successfully retrieved provinces',
+        data: provinces
+      },
+    200);
+    }
+    return c.json(
+      {
+        status: 'error',
+        message: `Provinces not found`,
+      },
+      404
+    );
   }
 );
 
@@ -199,7 +212,7 @@ router.openapi(
     try {
       const data = await c.req.json()
       const updatedProvince = await updateProvince(code, data)
-      if (updatedProvince) {
+
         return c.json(
           {
             status: 'success',
@@ -208,15 +221,7 @@ router.openapi(
           },
           200
         )
-      } else {
-        return c.json(
-          {
-            status: 'error',
-            message: `Province with code ${code} not found`,
-          },
-          404
-        )
-      }
+
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
                     return c.json(
@@ -265,7 +270,7 @@ router.openapi(
     const code = c.req.param('code')
     try {
       const deletedProvince = await deleteProvince(code);
-      if (deletedProvince) {
+
         return c.json(
           {
             status: 'success',
@@ -274,14 +279,7 @@ router.openapi(
           },
           200
         )
-      }
-      return c.json(
-        {
-          status: 'error',
-          message: `Province with code ${code} not found`,
-        },
-        404
-      );
+    
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
         return c.json(

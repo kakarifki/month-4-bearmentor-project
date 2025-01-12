@@ -58,16 +58,28 @@ router.openapi(
       200: {
         description: 'Retrieve all cuisines',
       },
+      404: {
+        description: 'No Cuisines found'
+      }
     },
     tags: API_TAG,
   }),
   async (c) => {
     const cuisines = await getCuisines();
-    return c.json({
-      status: 'success',
-      message: 'Successfully retrieved cuisines',
-      data: cuisines,
-    });
+    if (cuisines) {
+      return c.json({
+        status: 'success',
+        message: 'Successfully retrieved cuisines',
+        data: cuisines,
+      });  
+    }
+    return c.json(
+      {
+        status: 'error',
+        message: `Cuisines not found`,
+      },
+      404
+    );
   }
 );
 
@@ -217,20 +229,12 @@ router.openapi(
       }
 
       const updatedCuisine = await updateCuisine(code, data);
-      if (updatedCuisine) {
         return c.json({
           status: 'success',
           message: 'Successfully updated cuisine',
           data: updatedCuisine,
         });
-      }
-      return c.json(
-        {
-          status: 'error',
-          message: `Cuisine with code ${code} not found`,
-        },
-        404
-      );
+
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
         return c.json(
@@ -276,21 +280,11 @@ router.openapi(
     const code = c.req.param('code');
     try {
       const deletedCuisine = await deleteCuisine(code);
-      if (deletedCuisine) {
         return c.json({
           status: 'success',
           message: 'Successfully deleted cuisine',
           data: deletedCuisine,
         });
-      } else {
-      return c.json(
-        {
-          status: 'error',
-          message: `Cuisine with code ${code} not found`,
-        },
-        404
-      );
-    }
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
               return c.json(

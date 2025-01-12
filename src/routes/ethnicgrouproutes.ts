@@ -56,16 +56,28 @@ router.openapi(
       200: {
         description: 'Retrieve all ethnic groups',
       },
+      404: {
+        description: 'No ethnic group found'
+      },
     },
     tags: API_TAG,
   }),
   async (c) => {
     const ethnicGroups = await getEthnicGroups();
-    return c.json({
-      status: 'success',
-      message: 'Successfully retrieved ethnic groups',
-      data: ethnicGroups,
-    });
+    if (ethnicGroups) {
+      return c.json({
+        status: 'success',
+        message: 'Successfully retrieved ethnic groups',
+        data: ethnicGroups,
+      });  
+    }
+    return c.json(
+      {
+        status: 'error',
+        message: `Ethnic Group not found`,
+      },
+      404
+    );
   }
 );
 
@@ -215,20 +227,11 @@ router.openapi(
       }
 
       const updatedEthnicGroup = await updateEthnicGroup(code, data);
-      if (updatedEthnicGroup) {
         return c.json({
           status: 'success',
           message: 'Successfully updated ethnic group',
           data: updatedEthnicGroup,
         });
-      }
-      return c.json(
-        {
-          status: 'error',
-          message: `Ethnic group with code ${code} not found`,
-        },
-        404
-      );
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
                     return c.json(
@@ -274,20 +277,12 @@ router.openapi(
     const code = c.req.param('code');
     try {
       const deletedEthnicGroup = await deleteEthnicGroup(code);
-      if (deletedEthnicGroup) {
         return c.json({
           status: 'success',
           message: 'Successfully deleted ethnic group',
           data: deletedEthnicGroup,
         });
-      }
-      return c.json(
-        {
-          status: 'error',
-          message: `Ethnic group with code ${code} not found`,
-        },
-        404
-      );
+
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
         return c.json(
