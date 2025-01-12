@@ -69,22 +69,36 @@ router.openapi(
     tags: API_TAG
   }),
   async (c) => {
-    const provinces = await getProvinces();
-    if (provinces) {
-      return c.json({
-        status: 'success',
-        message: 'Successfully retrieved provinces',
-        data: provinces
-      },
-    200);
+    const filters = c.req.query(); // Get query params
+    try {
+      const provinces = await getProvinces(filters);
+      if (provinces.length > 0) {
+        return c.json(
+          {
+            status: 'success',
+            message: 'Successfully retrieved provinces',
+            data: provinces,
+          },
+          200
+        );
+      }
+      return c.json(
+        {
+          status: 'error',
+          message: 'No provinces found',
+        },
+        404
+      );
+    } catch (error) {
+      return c.json(
+        {
+          status: 'error',
+          message: 'Failed to fetch provinces',
+          error: error instanceof Error ? error.message : String(error),
+        },
+        400
+      );
     }
-    return c.json(
-      {
-        status: 'error',
-        message: `Provinces not found`,
-      },
-      404
-    );
   }
 );
 

@@ -4,8 +4,19 @@ export const createCuisine = async (data: any) => {
   return await prisma.cuisine.create({ data })
 }
 
-export const getCuisines = async () => {
-  return await prisma.cuisine.findMany()
+export const getCuisines = async (filters: { name?: string } ={} ) => {
+  return await prisma.cuisine.findMany(
+    {
+      where: {
+        ...(filters.name && {
+          name: {
+            contains: filters.name,
+            mode: 'insensitive',
+          }
+        })
+      },
+    }
+  )
 }
 
 export const getCuisineByCode = async (cuisineCode: string) => {

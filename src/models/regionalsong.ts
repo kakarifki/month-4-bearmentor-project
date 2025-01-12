@@ -4,8 +4,20 @@ export const createRegionalSong = async (data: any) => {
   return await prisma.regionalSong.create({ data })
 }
 
-export const getRegionalSongs = async () => {
-  return await prisma.regionalSong.findMany()
+export const getRegionalSongs = async (filters: { title?: string } = {}) => {
+  return await prisma.regionalSong.findMany(
+    {
+      where: {
+        ...(filters.title && {
+          title: {
+            contains: filters.title,
+            mode: 'insensitive'
+          }
+        }
+      )
+      }
+    }
+  )
 }
 
 export const getRegionalSongByCode = async (regionalSongCode: string) => {

@@ -8,6 +8,7 @@ import {
 } from '../models/cuisine'
 import { getProvinceByCode } from '../models/province'
 import { Prisma } from '@prisma/client';
+import { string } from 'zod';
 
 const API_TAG = ['Cuisines'];
 
@@ -65,21 +66,35 @@ router.openapi(
     tags: API_TAG,
   }),
   async (c) => {
-    const cuisines = await getCuisines();
-    if (cuisines) {
-      return c.json({
-        status: 'success',
-        message: 'Successfully retrieved cuisines',
-        data: cuisines,
-      });  
+    const filters = c.req.query();
+    try {
+      const cuisines = await getCuisines(filters);
+      if (cuisines.length > 0) {
+        return c.json({
+          status: 'success',
+          message: 'Successfully retrieved cuisines',
+          data: cuisines,
+        });  
+      }
+      return c.json(
+        {
+          status: 'error',
+          message: `Cuisines not found`,
+        },
+        404
+      );
+    } catch (error) {
+      return c.json(
+        {
+          status: 'error',
+          message: 'Failed to fetch Cuisines',
+          error: error instanceof Error ? error.message : String(error)
+        },
+        400
+      )
     }
-    return c.json(
-      {
-        status: 'error',
-        message: `Cuisines not found`,
-      },
-      404
-    );
+    
+    
   }
 );
 

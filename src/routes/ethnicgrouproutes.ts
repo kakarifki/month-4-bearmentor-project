@@ -63,21 +63,36 @@ router.openapi(
     tags: API_TAG,
   }),
   async (c) => {
-    const ethnicGroups = await getEthnicGroups();
-    if (ethnicGroups) {
-      return c.json({
-        status: 'success',
-        message: 'Successfully retrieved ethnic groups',
-        data: ethnicGroups,
-      });  
+    const filters = c.req.query(); // Get query params
+    try {
+      const ethnicGroups = await getEthnicGroups(filters);
+      if (ethnicGroups.length > 0) {
+        return c.json(
+          {
+            status: 'success',
+            message: 'Successfully retrieved Ethnic Groups',
+            data: ethnicGroups,
+          },
+          200
+        );
+      }
+      return c.json(
+        {
+          status: 'error',
+          message: `No Ethnic Groups found`,
+        },
+        404
+      );
+    } catch (error) {
+      return c.json(
+        {
+          status: 'error',
+          message: 'Failed to fetch Ethnic Groups',
+          error: error instanceof Error ? error.message : String(error),
+        },
+        400
+      );
     }
-    return c.json(
-      {
-        status: 'error',
-        message: `Ethnic Group not found`,
-      },
-      404
-    );
   }
 );
 

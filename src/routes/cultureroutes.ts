@@ -77,21 +77,36 @@ router.openapi(
         tags: API_TAG
     }),
     async (c) => {
-        const cultures = await getCultures();
-        if (cultures) {
-          return c.json ({
-            status: 'success',
-            message: 'Successfully retrieved cultures',
-            data: cultures
-        })
+      const filters = c.req.query(); // Get query params
+      try {
+        const cultures = await getCultures(filters);
+        if (cultures.length > 0) {
+          return c.json(
+            {
+              status: 'success',
+              message: 'Successfully retrieved cultures',
+              data: cultures,
+            },
+            200
+          );
         }
         return c.json(
           {
             status: 'error',
-            message: `Cultures not found`,
+            message: 'No cultures found',
           },
           404
         );
+      } catch (error) {
+        return c.json(
+          {
+            status: 'error',
+            message: 'Failed to fetch cultures',
+            error: error instanceof Error ? error.message : String(error),
+          },
+          400
+        );
+      }
     }
 )
 

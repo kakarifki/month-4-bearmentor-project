@@ -65,22 +65,34 @@ router.openapi(
     tags: API_TAG,
   }),
   async (c) => {
-    const regionalSongs = await getRegionalSongs();
-    if (regionalSongs) {
-      return c.json({
-        status: 'success',
-        message: 'Successfully retrieved regional songs',
-        data: regionalSongs,
-      });
+    const filters = c.req.query();
+    try {
+      const regionalSongs = await getRegionalSongs(filters);  
+      if (regionalSongs.length > 0) {
+        return c.json({
+          status: 'success',
+          message: 'Successfully retrieved regional songs',
+          data: regionalSongs,
+        });
+      }
+      return c.json(
+        {
+          status: 'error',
+          message: `No Regional Songs found`,
+        },
+        404
+      );  
+      } catch (error) {
+      return c.json(
+        {
+          status: 'error',
+          message: 'Failed to fetch regional songs',
+          error: error instanceof Error ? error.message : String(error),
+        },
+        400
+      );
     }
-    return c.json(
-      {
-        status: 'error',
-        message: `Regional Songs not found`,
-      },
-      404
-    );
-  }
+}
 );
 
 // GET /regionalsongs/:code

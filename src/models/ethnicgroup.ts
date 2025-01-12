@@ -4,9 +4,21 @@ export const createEthnicGroup = async (data: any) => {
   return await prisma.ethnicGroup.create({ data })
 }
 
-export const getEthnicGroups = async () => {
-  return await prisma.ethnicGroup.findMany()
+export const getEthnicGroups = async (filters: { name?: string } = {}) => {
+  return await prisma.ethnicGroup.findMany(
+    {
+    where: {
+      ...(filters.name && {
+        name: {
+          contains: filters.name,
+          mode: 'insensitive', // Case-insensitive
+        },
+      }),
+  }
 }
+  )
+}
+
 
 export const getEthnicGroupByCode = async (ethnicGroupCode: string) => {
   return await prisma.ethnicGroup.findUnique({
