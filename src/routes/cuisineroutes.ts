@@ -1,5 +1,4 @@
-import { Hono } from 'hono'
-import * as z from 'zod'
+import { OpenAPIHono, createRoute, z } from '@hono/zod-openapi';
 import {
   createCuisine,
   getCuisines,
@@ -9,96 +8,138 @@ import {
 } from '../models/cuisine'
 import { getProvinceByCode } from '../models/province'
 
+const API_TAG = ['Cuisines'];
+
+// Zod schema for Cuisine
 const cuisineSchema = z.object({
   name: z.string(),
   cuisineCode: z.string().max(10),
-  description: z.string(),
+  description: z.string().optional(),
   provinceCode: z.string(),
-})
+});
 
-const router = new Hono()
+// Schema for Path Parameters
+const paramsSchema = z.object({
+  code: z.string().openapi({
+    param: {
+      name: 'code',
+      in: 'path',
+    },
+    example: 'rendang',
+  }),
+});
 
-router.get('/', async (c) => {
-  const cuisines = await getCuisines()
-  return c.json(
-    {
+// Schema for Request Body
+const createCuisineSchema = z.object({
+  name: z.string(),
+  cuisineCode: z.string().max(10),
+  description: z.string().optional(),
+  provinceCode: z.string(),
+});
+
+// Schema for Query Cuisine
+const queryCuisineSchema = z.object({
+  name: z.string().optional(),
+});
+
+const router = new OpenAPIHono();
+
+// GET /cuisines
+router.openapi(
+  createRoute({
+    method: 'get',
+    path: '/',
+    description: 'Show all Cuisines',
+    request: {
+      query: queryCuisineSchema,
+    },
+    responses: {
+      200: {
+        description: 'Retrieve all cuisines',
+      },
+    },
+    tags: API_TAG,
+  }),
+  async (c) => {
+    const cuisines = await getCuisines();
+    return c.json({
       status: 'success',
       message: 'Successfully retrieved cuisines',
       data: cuisines,
-    },
-    200
-  )
-})
+    });
+  }
+);
 
-router.get('/:code', async (c) => {
-  const code = c.req.param('code')
-  const cuisine = await getCuisineByCode(code)
-  if (cuisine) {
-    return c.json(
-      {
+// GET /cuisines/:code
+router.openapi(
+  createRoute({
+    method: 'get',
+    path: '/{code}',
+    description: 'Get cuisine by cuisine code',
+    request: {
+      params: paramsSchema,
+    },
+    responses: {
+      200: {
+        description: 'Retrieve a cuisine by code',
+      },
+      404: {
+        description: 'Cuisine not found',
+      },
+    },
+    tags: API_TAG,
+  }),
+  async (c) => {
+    const code = c.req.param('code');
+    const cuisine = await getCuisineByCode(code);
+    if (cuisine) {
+      return c.json({
         status: 'success',
         message: 'Successfully retrieved cuisine',
         data: cuisine,
-      },
-      200
-    )
-  } else {
+      });
+    }
     return c.json(
       {
         status: 'error',
         message: `Cuisine with code ${code} not found`,
       },
       404
-    )
+    );
   }
-})
+);
 
-router.post('/', async (c) => {
-  try {
-    const data = await c.req.json()
-    cuisineSchema.parse(data)
-
-    // Validasi relasi: cek apakah provinceCode ada di tabel Province
-    const province = await getProvinceByCode(data.provinceCode)
-    if (!province) {
-      return c.json(
-        {
-          status: 'error',
-          message: `Province with code ${data.provinceCode} not found`,
+// POST /cuisines
+router.openapi(
+  createRoute({
+    method: 'post',
+    path: '/',
+    description: 'Create a new cuisine entry',
+    request: {
+      body: {
+        content: {
+          'application/json': {
+            schema: createCuisineSchema,
+          },
         },
-        400
-      )
-    }
-
-    const newCuisine = await createCuisine(data)
-    return c.json(
-      {
-        status: 'success',
-        message: 'Successfully created cuisine',
-        data: newCuisine,
       },
-      201
-    )
-  } catch (error) {
-    return c.json(
-      {
-        status: 'error',
-        message: 'Failed to create cuisine',
-        error: error instanceof Error ? error.message : String(error),
+    },
+    responses: {
+      201: {
+        description: 'Successfully created cuisine',
       },
-      400
-    )
-  }
-})
+      400: {
+        description: 'Failed to create cuisine',
+      },
+    },
+    tags: API_TAG,
+  }),
+  async (c) => {
+    try {
+      const data = await c.req.json();
+      createCuisineSchema.parse(data);
 
-router.patch('/:code', async (c) => {
-  const code = c.req.param('code')
-  try {
-    const data = await c.req.json()
-
-    // Jika ada perubahan provinceCode, validasi relasi terlebih dahulu
-    if (data.provinceCode) {
-      const province = await getProvinceByCode(data.provinceCode)
+      const province = await getProvinceByCode(data.provinceCode);
       if (!province) {
         return c.json(
           {
@@ -106,73 +147,152 @@ router.patch('/:code', async (c) => {
             message: `Province with code ${data.provinceCode} not found`,
           },
           400
-        )
+        );
       }
-    }
 
-    const updatedCuisine = await updateCuisine(code, data)
-    if (updatedCuisine) {
+      const newCuisine = await createCuisine(data);
       return c.json(
         {
+          status: 'success',
+          message: 'Successfully created cuisine',
+          data: newCuisine,
+        },
+        201
+      );
+    } catch (error) {
+      return c.json(
+        {
+          status: 'error',
+          message: 'Failed to create cuisine',
+          error: error instanceof Error ? error.message : String(error),
+        },
+        400
+      );
+    }
+  }
+);
+
+// PATCH /cuisines/:code
+router.openapi(
+  createRoute({
+    method: 'patch',
+    path: '/{code}',
+    description: 'Update an existing cuisine',
+    request: {
+      params: paramsSchema,
+      body: {
+        content: {
+          'application/json': {
+            schema: cuisineSchema.partial(),
+          },
+        },
+      },
+    },
+    responses: {
+      200: {
+        description: 'Successfully updated cuisine',
+      },
+      404: {
+        description: 'Cuisine not found',
+      },
+    },
+    tags: API_TAG,
+  }),
+  async (c) => {
+    const code = c.req.param('code');
+    try {
+      const data = await c.req.json();
+      if (data.provinceCode) {
+        const province = await getProvinceByCode(data.provinceCode);
+        if (!province) {
+          return c.json(
+            {
+              status: 'error',
+              message: `Province with code ${data.provinceCode} not found`,
+            },
+            400
+          );
+        }
+      }
+
+      const updatedCuisine = await updateCuisine(code, data);
+      if (updatedCuisine) {
+        return c.json({
           status: 'success',
           message: 'Successfully updated cuisine',
           data: updatedCuisine,
-        },
-        200
-      )
-    } else {
+        });
+      }
       return c.json(
         {
           status: 'error',
           message: `Cuisine with code ${code} not found`,
         },
         404
-      )
-    }
-  } catch (error) {
-    return c.json(
-      {
-        status: 'error',
-        message: 'Failed to update cuisine',
-        error: error instanceof Error ? error.message : String(error),
-      },
-      400
-    )
-  }
-})
-
-router.delete('/:code', async (c) => {
-  const code = c.req.param('code')
-  try {
-    const deletedCuisine = await deleteCuisine(code)
-    if (deletedCuisine) {
+      );
+    } catch (error) {
       return c.json(
         {
+          status: 'error',
+          message: 'Failed to update cuisine',
+          error: error instanceof Error ? error.message : String(error),
+        },
+        400
+      );
+    }
+  }
+);
+
+// DELETE /cuisines/:code
+router.openapi(
+  createRoute({
+    method: 'delete',
+    path: '/{code}',
+    description: 'Delete a cuisine entry',
+    request: {
+      params: paramsSchema,
+    },
+    responses: {
+      200: {
+        description: 'Successfully deleted cuisine',
+      },
+      404: {
+        description: 'Cuisine not found',
+      },
+    },
+    tags: API_TAG,
+  }),
+  async (c) => {
+    const code = c.req.param('code');
+    try {
+      const deletedCuisine = await deleteCuisine(code);
+      if (deletedCuisine) {
+        return c.json({
           status: 'success',
           message: 'Successfully deleted cuisine',
           data: deletedCuisine,
-        },
-        200
-      )
-    } else {
+        });
+      }
       return c.json(
         {
           status: 'error',
           message: `Cuisine with code ${code} not found`,
         },
         404
-      )
+      );
+    } catch (error) {
+      return c.json(
+        {
+          status: 'error',
+          message: 'Failed to delete cuisine',
+          error: error instanceof Error ? error.message : String(error),
+        },
+        400
+      );
     }
-  } catch (error) {
-    return c.json(
-      {
-        status: 'error',
-        message: 'Failed to delete cuisine',
-        error: error instanceof Error ? error.message : String(error),
-      },
-      400
-    )
   }
-})
+);
+
+
 
 export default router
