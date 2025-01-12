@@ -2,7 +2,7 @@
   "name": "budaya-indonesia",
   "scripts": {
     "dev": "bun run --hot src/index.ts",
-    "prestart": "bunx prisma migrate deploy && <seeding disini>",
+    "prestart": "bunx prisma migrate deploy && bunx prisma db seed",
     "start": "bun run src/index.ts"
   },
   "prisma":{
@@ -14,7 +14,6 @@
     "@prisma/client": "^6.1.0",
     "hono": "^4.6.12",
     "hono-openapi": "^0.3.1",
-    "prisma": "^6.1.0",
     "zod": "^3.24.1"
   },
   "devDependencies": {
@@ -22,6 +21,7 @@
     "@types/node": "^22.10.5",
     "csvtojson": "^2.0.10",
     "ts-node": "^10.9.2",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "prisma": "^6.1.0"
   }
 }
