@@ -1,4 +1,5 @@
 import { OpenAPIHono, createRoute, z } from '@hono/zod-openapi'
+import { Prisma } from '@prisma/client'
 import {
     createProvince,
     getProvinces,
@@ -217,6 +218,15 @@ router.openapi(
         )
       }
     } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
+                    return c.json(
+                      {
+                        status: 'error',
+                        message: `Province with code ${code} not found`,
+                      },
+                      404
+                    );
+                  }
       return c.json(
         {
           status: 'error',
@@ -264,15 +274,23 @@ router.openapi(
           },
           200
         )
-      } else {
+      }
+      return c.json(
+        {
+          status: 'error',
+          message: `Province with code ${code} not found`,
+        },
+        404
+      );
+    } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
         return c.json(
           {
             status: 'error',
             message: `Province with code ${code} not found`
           }
         )
-      }
-    } catch (error) {
+      } else {
       return c.json(
         {
           status: 'error',
@@ -283,6 +301,7 @@ router.openapi(
       )
     }
   }
+}
 )
 
 

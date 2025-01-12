@@ -8,6 +8,7 @@ import {
   deleteCulture,
 } from '../models/culture'
 import { getProvinceByCode } from '../models/province'
+import { Prisma } from '@prisma/client';
 
 const API_TAG = ['Cultures']
 
@@ -243,6 +244,15 @@ router.openapi(
         404
       );
     } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
+                    return c.json(
+                      {
+                        status: 'error',
+                        message: `Culture with code ${code} not found`,
+                      },
+                      404
+                    );
+                  }
       return c.json(
         {
           status: 'error',
@@ -293,6 +303,15 @@ router.openapi(
         404
       );
     } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
+              return c.json(
+                {
+                  status: 'error',
+                  message: `Culture with code ${code} not found`,
+                },
+                404
+              );
+            }
       return c.json(
         {
           status: 'error',

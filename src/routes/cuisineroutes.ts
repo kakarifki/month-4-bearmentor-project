@@ -7,6 +7,7 @@ import {
   deleteCuisine,
 } from '../models/cuisine'
 import { getProvinceByCode } from '../models/province'
+import { Prisma } from '@prisma/client';
 
 const API_TAG = ['Cuisines'];
 
@@ -231,6 +232,15 @@ router.openapi(
         404
       );
     } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
+        return c.json(
+          {
+            status: 'error',
+            message: `Cuisine with code ${code} not found`,
+          },
+          404
+        );
+      }
       return c.json(
         {
           status: 'error',
@@ -272,7 +282,7 @@ router.openapi(
           message: 'Successfully deleted cuisine',
           data: deletedCuisine,
         });
-      }
+      } else {
       return c.json(
         {
           status: 'error',
@@ -280,7 +290,17 @@ router.openapi(
         },
         404
       );
+    }
     } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
+              return c.json(
+                {
+                  status: 'error',
+                  message: `Cuisine with code ${code} not found`,
+                },
+                404
+              );
+            }
       return c.json(
         {
           status: 'error',
