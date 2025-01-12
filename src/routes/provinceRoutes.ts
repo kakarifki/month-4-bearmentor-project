@@ -6,7 +6,6 @@ import {
     updateProvince,
     deleteProvince
 } from '../models/province'
-import app from '../app';
 
 const API_TAG = ['Provinces']
 
