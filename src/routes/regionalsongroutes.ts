@@ -1,5 +1,4 @@
-import { Hono } from 'hono'
-import * as z from 'zod'
+import { OpenAPIHono, createRoute, z } from '@hono/zod-openapi';
 import {
   createRegionalSong,
   getRegionalSongs,
@@ -9,96 +8,138 @@ import {
 } from '../models/regionalsong'
 import { getProvinceByCode } from '../models/province'
 
+const API_TAG = ['Regional Songs'];
+
+// Zod schema for RegionalSong
 const regionalSongSchema = z.object({
   title: z.string(),
   regionalSongCode: z.string().max(10),
-  composer: z.string(),
+  composer: z.string().optional(),
   provinceCode: z.string(),
-})
+});
 
-const router = new Hono()
+// Schema for Path Parameters
+const paramsSchema = z.object({
+  code: z.string().openapi({
+    param: {
+      name: 'code',
+      in: 'path',
+    },
+    example: 'bengawan',
+  }),
+});
 
-router.get('/', async (c) => {
-  const regionalSongs = await getRegionalSongs()
-  return c.json(
-    {
+// Schema for Request Body
+const createRegionalSongSchema = z.object({
+  title: z.string(),
+  regionalSongCode: z.string().max(10),
+  composer: z.string().optional(),
+  provinceCode: z.string(),
+});
+
+// Schema for Query RegionalSong
+const queryRegionalSongSchema = z.object({
+  title: z.string().optional(),
+});
+
+const router = new OpenAPIHono();
+
+// GET /regionalsongs
+router.openapi(
+  createRoute({
+    method: 'get',
+    path: '/',
+    description: 'Show all Regional Songs',
+    request: {
+      query: queryRegionalSongSchema,
+    },
+    responses: {
+      200: {
+        description: 'Retrieve all regional songs',
+      },
+    },
+    tags: API_TAG,
+  }),
+  async (c) => {
+    const regionalSongs = await getRegionalSongs();
+    return c.json({
       status: 'success',
       message: 'Successfully retrieved regional songs',
       data: regionalSongs,
-    },
-    200
-  )
-})
+    });
+  }
+);
 
-router.get('/:code', async (c) => {
-  const code = c.req.param('code')
-  const regionalSong = await getRegionalSongByCode(code)
-  if (regionalSong) {
-    return c.json(
-      {
+// GET /regionalsongs/:code
+router.openapi(
+  createRoute({
+    method: 'get',
+    path: '/{code}',
+    description: 'Get regional song by regional song code',
+    request: {
+      params: paramsSchema,
+    },
+    responses: {
+      200: {
+        description: 'Retrieve a regional song by code',
+      },
+      404: {
+        description: 'Regional song not found',
+      },
+    },
+    tags: API_TAG,
+  }),
+  async (c) => {
+    const code = c.req.param('code');
+    const regionalSong = await getRegionalSongByCode(code);
+    if (regionalSong) {
+      return c.json({
         status: 'success',
         message: 'Successfully retrieved regional song',
         data: regionalSong,
-      },
-      200
-    )
-  } else {
+      });
+    }
     return c.json(
       {
         status: 'error',
-        message: `Regional Song with code ${code} not found`,
+        message: `Regional song with code ${code} not found`,
       },
       404
-    )
+    );
   }
-})
+);
 
-router.post('/', async (c) => {
-  try {
-    const data = await c.req.json()
-    regionalSongSchema.parse(data)
-
-    // Validasi relasi: cek apakah provinceCode ada di tabel Province
-    const province = await getProvinceByCode(data.provinceCode)
-    if (!province) {
-      return c.json(
-        {
-          status: 'error',
-          message: `Province with code ${data.provinceCode} not found`,
+// POST /regionalsongs
+router.openapi(
+  createRoute({
+    method: 'post',
+    path: '/',
+    description: 'Create a new regional song entry',
+    request: {
+      body: {
+        content: {
+          'application/json': {
+            schema: createRegionalSongSchema,
+          },
         },
-        400
-      )
-    }
-
-    const newRegionalSong = await createRegionalSong(data)
-    return c.json(
-      {
-        status: 'success',
-        message: 'Successfully created regional song',
-        data: newRegionalSong,
       },
-      201
-    )
-  } catch (error) {
-    return c.json(
-      {
-        status: 'error',
-        message: 'Failed to create regional song',
-        error: error instanceof Error ? error.message : String(error),
+    },
+    responses: {
+      201: {
+        description: 'Successfully created regional song',
       },
-      400
-    )
-  }
-})
+      400: {
+        description: 'Failed to create regional song',
+      },
+    },
+    tags: API_TAG,
+  }),
+  async (c) => {
+    try {
+      const data = await c.req.json();
+      createRegionalSongSchema.parse(data);
 
-router.patch('/:code', async (c) => {
-  const code = c.req.param('code')
-  try {
-    const data = await c.req.json()
-
-    // Jika ada perubahan provinceCode, validasi relasi terlebih dahulu
-    if (data.provinceCode) {
-      const province = await getProvinceByCode(data.provinceCode)
+      const province = await getProvinceByCode(data.provinceCode);
       if (!province) {
         return c.json(
           {
@@ -106,73 +147,310 @@ router.patch('/:code', async (c) => {
             message: `Province with code ${data.provinceCode} not found`,
           },
           400
-        )
+        );
       }
-    }
 
-    const updatedRegionalSong = await updateRegionalSong(code, data)
-    if (updatedRegionalSong) {
+      const newRegionalSong = await createRegionalSong(data);
       return c.json(
         {
+          status: 'success',
+          message: 'Successfully created regional song',
+          data: newRegionalSong,
+        },
+        201
+      );
+    } catch (error) {
+      return c.json(
+        {
+          status: 'error',
+          message: 'Failed to create regional song',
+          error: error instanceof Error ? error.message : String(error),
+        },
+        400
+      );
+    }
+  }
+);
+
+// PATCH /regionalsongs/:code
+router.openapi(
+  createRoute({
+    method: 'patch',
+    path: '/{code}',
+    description: 'Update an existing regional song',
+    request: {
+      params: paramsSchema,
+      body: {
+        content: {
+          'application/json': {
+            schema: regionalSongSchema.partial(),
+          },
+        },
+      },
+    },
+    responses: {
+      200: {
+        description: 'Successfully updated regional song',
+      },
+      404: {
+        description: 'Regional song not found',
+      },
+    },
+    tags: API_TAG,
+  }),
+  async (c) => {
+    const code = c.req.param('code');
+    try {
+      const data = await c.req.json();
+      if (data.provinceCode) {
+        const province = await getProvinceByCode(data.provinceCode);
+        if (!province) {
+          return c.json(
+            {
+              status: 'error',
+              message: `Province with code ${data.provinceCode} not found`,
+            },
+            400
+          );
+        }
+      }
+
+      const updatedRegionalSong = await updateRegionalSong(code, data);
+      if (updatedRegionalSong) {
+        return c.json({
           status: 'success',
           message: 'Successfully updated regional song',
           data: updatedRegionalSong,
-        },
-        200
-      )
-    } else {
+        });
+      }
       return c.json(
         {
           status: 'error',
           message: `Regional song with code ${code} not found`,
         },
         404
-      )
-    }
-  } catch (error) {
-    return c.json(
-      {
-        status: 'error',
-        message: 'Failed to update regional song',
-        error: error instanceof Error ? error.message : String(error),
-      },
-      400
-    )
-  }
-})
-
-router.delete('/:code', async (c) => {
-  const code = c.req.param('code')
-  try {
-    const deletedRegionalSong = await deleteRegionalSong(code)
-    if (deletedRegionalSong) {
+      );
+    } catch (error) {
       return c.json(
         {
+          status: 'error',
+          message: 'Failed to update regional song',
+          error: error instanceof Error ? error.message : String(error),
+        },
+        400
+      );
+    }
+  }
+);
+
+// DELETE /regionalsongs/:code
+router.openapi(
+  createRoute({
+    method: 'delete',
+    path: '/{code}',
+    description: 'Delete a regional song entry',
+    request: {
+      params: paramsSchema,
+    },
+    responses: {
+      200: {
+        description: 'Successfully deleted regional song',
+      },
+      404: {
+        description: 'Regional song not found',
+      },
+    },
+    tags: API_TAG,
+  }),
+  async (c) => {
+    const code = c.req.param('code');
+    try {
+      const deletedRegionalSong = await deleteRegionalSong(code);
+      if (deletedRegionalSong) {
+        return c.json({
           status: 'success',
           message: 'Successfully deleted regional song',
           data: deletedRegionalSong,
-        },
-        200
-      )
-    } else {
+        });
+      }
       return c.json(
         {
           status: 'error',
           message: `Regional song with code ${code} not found`,
         },
         404
-      )
+      );
+    } catch (error) {
+      return c.json(
+        {
+          status: 'error',
+          message: 'Failed to delete regional song',
+          error: error instanceof Error ? error.message : String(error),
+        },
+        400
+      );
     }
-  } catch (error) {
-    return c.json(
-      {
-        status: 'error',
-        message: 'Failed to delete regional song',
-        error: error instanceof Error ? error.message : String(error),
-      },
-      400
-    )
   }
-})
+);
+
+
+// const router = new Hono()
+
+// router.get('/', async (c) => {
+//   const regionalSongs = await getRegionalSongs()
+//   return c.json(
+//     {
+//       status: 'success',
+//       message: 'Successfully retrieved regional songs',
+//       data: regionalSongs,
+//     },
+//     200
+//   )
+// })
+
+// router.get('/:code', async (c) => {
+//   const code = c.req.param('code')
+//   const regionalSong = await getRegionalSongByCode(code)
+//   if (regionalSong) {
+//     return c.json(
+//       {
+//         status: 'success',
+//         message: 'Successfully retrieved regional song',
+//         data: regionalSong,
+//       },
+//       200
+//     )
+//   } else {
+//     return c.json(
+//       {
+//         status: 'error',
+//         message: `Regional Song with code ${code} not found`,
+//       },
+//       404
+//     )
+//   }
+// })
+
+// router.post('/', async (c) => {
+//   try {
+//     const data = await c.req.json()
+//     regionalSongSchema.parse(data)
+
+//     // Validasi relasi: cek apakah provinceCode ada di tabel Province
+//     const province = await getProvinceByCode(data.provinceCode)
+//     if (!province) {
+//       return c.json(
+//         {
+//           status: 'error',
+//           message: `Province with code ${data.provinceCode} not found`,
+//         },
+//         400
+//       )
+//     }
+
+//     const newRegionalSong = await createRegionalSong(data)
+//     return c.json(
+//       {
+//         status: 'success',
+//         message: 'Successfully created regional song',
+//         data: newRegionalSong,
+//       },
+//       201
+//     )
+//   } catch (error) {
+//     return c.json(
+//       {
+//         status: 'error',
+//         message: 'Failed to create regional song',
+//         error: error instanceof Error ? error.message : String(error),
+//       },
+//       400
+//     )
+//   }
+// })
+
+// router.patch('/:code', async (c) => {
+//   const code = c.req.param('code')
+//   try {
+//     const data = await c.req.json()
+
+//     // Jika ada perubahan provinceCode, validasi relasi terlebih dahulu
+//     if (data.provinceCode) {
+//       const province = await getProvinceByCode(data.provinceCode)
+//       if (!province) {
+//         return c.json(
+//           {
+//             status: 'error',
+//             message: `Province with code ${data.provinceCode} not found`,
+//           },
+//           400
+//         )
+//       }
+//     }
+
+//     const updatedRegionalSong = await updateRegionalSong(code, data)
+//     if (updatedRegionalSong) {
+//       return c.json(
+//         {
+//           status: 'success',
+//           message: 'Successfully updated regional song',
+//           data: updatedRegionalSong,
+//         },
+//         200
+//       )
+//     } else {
+//       return c.json(
+//         {
+//           status: 'error',
+//           message: `Regional song with code ${code} not found`,
+//         },
+//         404
+//       )
+//     }
+//   } catch (error) {
+//     return c.json(
+//       {
+//         status: 'error',
+//         message: 'Failed to update regional song',
+//         error: error instanceof Error ? error.message : String(error),
+//       },
+//       400
+//     )
+//   }
+// })
+
+// router.delete('/:code', async (c) => {
+//   const code = c.req.param('code')
+//   try {
+//     const deletedRegionalSong = await deleteRegionalSong(code)
+//     if (deletedRegionalSong) {
+//       return c.json(
+//         {
+//           status: 'success',
+//           message: 'Successfully deleted regional song',
+//           data: deletedRegionalSong,
+//         },
+//         200
+//       )
+//     } else {
+//       return c.json(
+//         {
+//           status: 'error',
+//           message: `Regional song with code ${code} not found`,
+//         },
+//         404
+//       )
+//     }
+//   } catch (error) {
+//     return c.json(
+//       {
+//         status: 'error',
+//         message: 'Failed to delete regional song',
+//         error: error instanceof Error ? error.message : String(error),
+//       },
+//       400
+//     )
+//   }
+// })
 
 export default router
