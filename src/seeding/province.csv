@@ -1,0 +1,35 @@
+name,provinceCode,capital_city,population,area_size
+Aceh,aceh,Banda Aceh,5.3,57700
+Sumatera Utara,sumut,Medan,14.8,72981
+Sumatera Barat,sumbar,Padang,5.5,42012
+Riau,riau,Pekanbaru,6.4,87024
+Jambi,jambi,Jambi,3.6,50058
+Sumatera Selatan,sumsel,Palembang,8.5,91592
+Bengkulu,bengkulu,Bengkulu,2,19919
+Lampung,lampung,Bandar Lampung,9.1,34635
+Kepulauan Bangka Belitung,babel,Pangkal Pinang,1.4,16424
+Kepulauan Riau,kepri,Tanjung Pinang,2.1,8201
+DKI Jakarta,dki,Jakarta,10.6,661
+Jawa Barat,jabar,Bandung,48.2,35377
+Jawa Tengah,jateng,Semarang,36.5,32801
+DI Yogyakarta,diy,Yogyakarta,3.7,3133
+Jawa Timur,jatim,Surabaya,40.7,47922
+Banten,banten,Serang,11.9,10103
+Bali,bali,Denpasar,4.3,5780
+Nusa Tenggara Barat,ntb,Mataram,5.3,20153
+Nusa Tenggara Timur,ntt,Kupang,5.4,48718
+Kalimantan Barat,kalbar,Pontianak,5.4,147307
+Kalimantan Tengah,kalteng,Palangkaraya,2.6,153565
+Kalimantan Selatan,kalsel,Banjarmasin,4.1,38706
+Kalimantan Timur,kaltim,Samarinda,3.8,129727
+Kalimantan Utara,kaltara,Tanjung Selor,0.7,75468
+Sulawesi Utara,sulut,Manado,2.6,13892
+Sulawesi Tengah,sulteng,Palu,3,61841
+Sulawesi Selatan,sulsel,Makassar,9.1,46717
+Sulawesi Tenggara,sultra,Kendari,2.6,38068
+Gorontalo,goron,Gorontalo,1.2,11257
+Sulawesi Barat,sulbar,Mamuju,1.4,16787
+Maluku,maluku,Ambon,1.8,46914
+Maluku Utara,malut,Sofifi,1.3,31983
+Papua Barat,papuabarat,Manokwari,1.1,97024
+Papua,papua,Jayapura,4.3,319036

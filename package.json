@@ -5,6 +5,9 @@
     "prestart": "bunx prisma migrate deploy && <seeding disini>",
     "start": "bun run src/index.ts"
   },
+  "prisma":{
+    "seed": "ts-node ./prisma/seed.ts"
+  },
   "dependencies": {
     "@hono/swagger-ui": "^0.5.0",
     "@hono/zod-openapi": "^0.18.3",
@@ -16,6 +19,9 @@
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "typescript": "^5.7.2"
+    "@types/node": "^22.10.5",
+    "csvtojson": "^2.0.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
   }
 }

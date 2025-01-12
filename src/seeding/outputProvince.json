@@ -1,0 +1,226 @@
+[
+  {
+    "name": "Aceh",
+    "provinceCode": "aceh",
+    "capital_city": "Banda Aceh",
+    "population": 5,
+    "area_size": 57700
+  },
+  {
+    "name": "Sumatera Utara",
+    "provinceCode": "sumut",
+    "capital_city": "Medan",
+    "population": 14,
+    "area_size": 72981
+  },
+  {
+    "name": "Sumatera Barat",
+    "provinceCode": "sumbar",
+    "capital_city": "Padang",
+    "population": 5,
+    "area_size": 42012
+  },
+  {
+    "name": "Riau",
+    "provinceCode": "riau",
+    "capital_city": "Pekanbaru",
+    "population": 6,
+    "area_size": 87024
+  },
+  {
+    "name": "Jambi",
+    "provinceCode": "jambi",
+    "capital_city": "Jambi",
+    "population": 3,
+    "area_size": 50058
+  },
+  {
+    "name": "Sumatera Selatan",
+    "provinceCode": "sumsel",
+    "capital_city": "Palembang",
+    "population": 8,
+    "area_size": 91592
+  },
+  {
+    "name": "Bengkulu",
+    "provinceCode": "bengkulu",
+    "capital_city": "Bengkulu",
+    "population": 2,
+    "area_size": 19919
+  },
+  {
+    "name": "Lampung",
+    "provinceCode": "lampung",
+    "capital_city": "Bandar Lampung",
+    "population": 9,
+    "area_size": 34635
+  },
+  {
+    "name": "Kepulauan Bangka Belitung",
+    "provinceCode": "babel",
+    "capital_city": "Pangkal Pinang",
+    "population": 1,
+    "area_size": 16424
+  },
+  {
+    "name": "Kepulauan Riau",
+    "provinceCode": "kepri",
+    "capital_city": "Tanjung Pinang",
+    "population": 2,
+    "area_size": 8201
+  },
+  {
+    "name": "Jawa Tengah",
+    "provinceCode": "jateng",
+    "capital_city": "Semarang",
+    "population": 36,
+    "area_size": 32801
+  },
+  {
+    "name": "DI Yogyakarta",
+    "provinceCode": "diy",
+    "capital_city": "Yogyakarta",
+    "population": 3,
+    "area_size": 3133
+  },
+  {
+    "name": "Jawa Timur",
+    "provinceCode": "jatim",
+    "capital_city": "Surabaya",
+    "population": 40,
+    "area_size": 47922
+  },
+  {
+    "name": "Banten",
+    "provinceCode": "banten",
+    "capital_city": "Serang",
+    "population": 11,
+    "area_size": 10103
+  },
+  {
+    "name": "Bali",
+    "provinceCode": "bali",
+    "capital_city": "Denpasar",
+    "population": 4,
+    "area_size": 5780
+  },
+  {
+    "name": "Nusa Tenggara Barat",
+    "provinceCode": "ntb",
+    "capital_city": "Mataram",
+    "population": 5,
+    "area_size": 20153
+  },
+  {
+    "name": "Nusa Tenggara Timur",
+    "provinceCode": "ntt",
+    "capital_city": "Kupang",
+    "population": 5,
+    "area_size": 48718
+  },
+  {
+    "name": "Kalimantan Barat",
+    "provinceCode": "kalbar",
+    "capital_city": "Pontianak",
+    "population": 5,
+    "area_size": 147307
+  },
+  {
+    "name": "Kalimantan Tengah",
+    "provinceCode": "kalteng",
+    "capital_city": "Palangkaraya",
+    "population": 2,
+    "area_size": 153565
+  },
+  {
+    "name": "Kalimantan Selatan",
+    "provinceCode": "kalsel",
+    "capital_city": "Banjarmasin",
+    "population": 4,
+    "area_size": 38706
+  },
+  {
+    "name": "Kalimantan Timur",
+    "provinceCode": "kaltim",
+    "capital_city": "Samarinda",
+    "population": 3,
+    "area_size": 129727
+  },
+  {
+    "name": "Kalimantan Utara",
+    "provinceCode": "kaltara",
+    "capital_city": "Tanjung Selor",
+    "population": 0,
+    "area_size": 75468
+  },
+  {
+    "name": "Sulawesi Utara",
+    "provinceCode": "sulut",
+    "capital_city": "Manado",
+    "population": 2,
+    "area_size": 13892
+  },
+  {
+    "name": "Sulawesi Tengah",
+    "provinceCode": "sulteng",
+    "capital_city": "Palu",
+    "population": 3,
+    "area_size": 61841
+  },
+  {
+    "name": "Sulawesi Selatan",
+    "provinceCode": "sulsel",
+    "capital_city": "Makassar",
+    "population": 9,
+    "area_size": 46717
+  },
+  {
+    "name": "Sulawesi Tenggara",
+    "provinceCode": "sultra",
+    "capital_city": "Kendari",
+    "population": 2,
+    "area_size": 38068
+  },
+  {
+    "name": "Gorontalo",
+    "provinceCode": "goron",
+    "capital_city": "Gorontalo",
+    "population": 1,
+    "area_size": 11257
+  },
+  {
+    "name": "Sulawesi Barat",
+    "provinceCode": "sulbar",
+    "capital_city": "Mamuju",
+    "population": 1,
+    "area_size": 16787
+  },
+  {
+    "name": "Maluku",
+    "provinceCode": "maluku",
+    "capital_city": "Ambon",
+    "population": 1,
+    "area_size": 46914
+  },
+  {
+    "name": "Maluku Utara",
+    "provinceCode": "malut",
+    "capital_city": "Sofifi",
+    "population": 1,
+    "area_size": 31983
+  },
+  {
+    "name": "Papua Barat",
+    "provinceCode": "papuabarat",
+    "capital_city": "Manokwari",
+    "population": 1,
+    "area_size": 97024
+  },
+  {
+    "name": "Papua",
+    "provinceCode": "papua",
+    "capital_city": "Jayapura",
+    "population": 4,
+    "area_size": 319036
+  }
+]

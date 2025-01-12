@@ -1,0 +1,54 @@
+name,ethnicGroupCode,provinceCode
+Aceh,aceh,aceh
+Gayo,gayo,aceh
+Alas,alas,aceh
+Batak Toba,bataktoba,sumut
+Batak Karo,batakkaro,sumut
+Mandailing,mandailing,sumut
+Nias,nias,sumut
+Minangkabau,minang,sumbar
+Mentawai,mentawai,sumbar
+Melayu Riau,melayuriau,riau
+Melayu Jambi,melayujambi,jambi
+Melayu Palembang,melayupal,sumsel
+Komering,komering,sumsel
+Lampung,lampung,lampung
+Sunda,sunda,jabar
+Baduy,baduy,banten
+Jawa,jawa,jateng
+Madura,madura,jatim
+Tengger,tengger,jatim
+Osing,osing,jatim
+Bali,bali,bali
+Sasak,sasak,ntb
+Bima,bima,ntb
+Sumbawa,sumbawa,ntb
+Flores,flores,ntt
+Sumba,sumba,ntt
+Timor,timor,ntt
+Dayak,dayak,kalbar
+Melayu Sambas,melayusamb,kalbar
+Banjar,banjar,kalsel
+Dayak Maanyan,maanyan,kalsel
+Kutai,kutai,kaltim
+Paser,paser,kaltim
+Tidung,tidung,kaltara
+Bulungan,bulungan,kaltara
+Minahasa,minahasa,sulut
+Mongondow,mongondow,sulut
+Bugis,bugis,sulsel
+Makassar,makassar,sulsel
+Toraja,toraja,sulsel
+Mandar,mandar,sulbar
+Gorontalo,gorontalo,goron
+Tolaki,tolaki,sultra
+Buton,buton,sultra
+Ambon,ambon,maluku
+Buru,buru,maluku
+Ternate,ternate,malut
+Tidore,tidore,malut
+Dani,dani,papua
+Asmat,asmat,papua
+Mey Brat,meybrat,papuabarat
+Arfak,arfak,papuabarat
+Betawi,betawi,dki

@@ -8,6 +8,7 @@ import {
 } from '../models/ethnicgroup'
 import { getProvinceByCode } from '../models/province'
 import { Prisma } from '@prisma/client';
+import { pathToFileURL } from 'bun';
 
 const API_TAG = ['Ethnic Groups'];
 
@@ -42,6 +43,8 @@ const queryEthnicGroupSchema = z.object({
 });
 
 const router = new OpenAPIHono();
+
+
 
 // GET /ethnicgroups
 router.openapi(

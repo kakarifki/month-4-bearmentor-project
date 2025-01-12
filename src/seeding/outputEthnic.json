@@ -1,0 +1,257 @@
+[
+  {
+    "name": "Aceh",
+    "ethnicGroupCode": "aceh",
+    "provinceCode": "aceh"
+  },
+  {
+    "name": "Gayo",
+    "ethnicGroupCode": "gayo",
+    "provinceCode": "aceh"
+  },
+  {
+    "name": "Alas",
+    "ethnicGroupCode": "alas",
+    "provinceCode": "aceh"
+  },
+  {
+    "name": "Batak Toba",
+    "ethnicGroupCode": "bataktoba",
+    "provinceCode": "sumut"
+  },
+  {
+    "name": "Batak Karo",
+    "ethnicGroupCode": "batakkaro",
+    "provinceCode": "sumut"
+  },
+  {
+    "name": "Mandailing",
+    "ethnicGroupCode": "mandailing",
+    "provinceCode": "sumut"
+  },
+  {
+    "name": "Nias",
+    "ethnicGroupCode": "nias",
+    "provinceCode": "sumut"
+  },
+  {
+    "name": "Minangkabau",
+    "ethnicGroupCode": "minang",
+    "provinceCode": "sumbar"
+  },
+  {
+    "name": "Mentawai",
+    "ethnicGroupCode": "mentawai",
+    "provinceCode": "sumbar"
+  },
+  {
+    "name": "Melayu Riau",
+    "ethnicGroupCode": "melayuriau",
+    "provinceCode": "riau"
+  },
+  {
+    "name": "Melayu Jambi",
+    "ethnicGroupCode": "melayujambi",
+    "provinceCode": "jambi"
+  },
+  {
+    "name": "Melayu Palembang",
+    "ethnicGroupCode": "melayupal",
+    "provinceCode": "sumsel"
+  },
+  {
+    "name": "Komering",
+    "ethnicGroupCode": "komering",
+    "provinceCode": "sumsel"
+  },
+  {
+    "name": "Lampung",
+    "ethnicGroupCode": "lampung",
+    "provinceCode": "lampung"
+  },
+  {
+    "name": "Baduy",
+    "ethnicGroupCode": "baduy",
+    "provinceCode": "banten"
+  },
+  {
+    "name": "Jawa",
+    "ethnicGroupCode": "jawa",
+    "provinceCode": "jateng"
+  },
+  {
+    "name": "Madura",
+    "ethnicGroupCode": "madura",
+    "provinceCode": "jatim"
+  },
+  {
+    "name": "Tengger",
+    "ethnicGroupCode": "tengger",
+    "provinceCode": "jatim"
+  },
+  {
+    "name": "Osing",
+    "ethnicGroupCode": "osing",
+    "provinceCode": "jatim"
+  },
+  {
+    "name": "Bali",
+    "ethnicGroupCode": "bali",
+    "provinceCode": "bali"
+  },
+  {
+    "name": "Sasak",
+    "ethnicGroupCode": "sasak",
+    "provinceCode": "ntb"
+  },
+  {
+    "name": "Bima",
+    "ethnicGroupCode": "bima",
+    "provinceCode": "ntb"
+  },
+  {
+    "name": "Sumbawa",
+    "ethnicGroupCode": "sumbawa",
+    "provinceCode": "ntb"
+  },
+  {
+    "name": "Flores",
+    "ethnicGroupCode": "flores",
+    "provinceCode": "ntt"
+  },
+  {
+    "name": "Sumba",
+    "ethnicGroupCode": "sumba",
+    "provinceCode": "ntt"
+  },
+  {
+    "name": "Timor",
+    "ethnicGroupCode": "timor",
+    "provinceCode": "ntt"
+  },
+  {
+    "name": "Dayak",
+    "ethnicGroupCode": "dayak",
+    "provinceCode": "kalbar"
+  },
+  {
+    "name": "Melayu Sambas",
+    "ethnicGroupCode": "melayusamb",
+    "provinceCode": "kalbar"
+  },
+  {
+    "name": "Banjar",
+    "ethnicGroupCode": "banjar",
+    "provinceCode": "kalsel"
+  },
+  {
+    "name": "Dayak Maanyan",
+    "ethnicGroupCode": "maanyan",
+    "provinceCode": "kalsel"
+  },
+  {
+    "name": "Kutai",
+    "ethnicGroupCode": "kutai",
+    "provinceCode": "kaltim"
+  },
+  {
+    "name": "Paser",
+    "ethnicGroupCode": "paser",
+    "provinceCode": "kaltim"
+  },
+  {
+    "name": "Tidung",
+    "ethnicGroupCode": "tidung",
+    "provinceCode": "kaltara"
+  },
+  {
+    "name": "Bulungan",
+    "ethnicGroupCode": "bulungan",
+    "provinceCode": "kaltara"
+  },
+  {
+    "name": "Minahasa",
+    "ethnicGroupCode": "minahasa",
+    "provinceCode": "sulut"
+  },
+  {
+    "name": "Mongondow",
+    "ethnicGroupCode": "mongondow",
+    "provinceCode": "sulut"
+  },
+  {
+    "name": "Bugis",
+    "ethnicGroupCode": "bugis",
+    "provinceCode": "sulsel"
+  },
+  {
+    "name": "Makassar",
+    "ethnicGroupCode": "makassar",
+    "provinceCode": "sulsel"
+  },
+  {
+    "name": "Toraja",
+    "ethnicGroupCode": "toraja",
+    "provinceCode": "sulsel"
+  },
+  {
+    "name": "Mandar",
+    "ethnicGroupCode": "mandar",
+    "provinceCode": "sulbar"
+  },
+  {
+    "name": "Gorontalo",
+    "ethnicGroupCode": "gorontalo",
+    "provinceCode": "goron"
+  },
+  {
+    "name": "Tolaki",
+    "ethnicGroupCode": "tolaki",
+    "provinceCode": "sultra"
+  },
+  {
+    "name": "Buton",
+    "ethnicGroupCode": "buton",
+    "provinceCode": "sultra"
+  },
+  {
+    "name": "Ambon",
+    "ethnicGroupCode": "ambon",
+    "provinceCode": "maluku"
+  },
+  {
+    "name": "Buru",
+    "ethnicGroupCode": "buru",
+    "provinceCode": "maluku"
+  },
+  {
+    "name": "Ternate",
+    "ethnicGroupCode": "ternate",
+    "provinceCode": "malut"
+  },
+  {
+    "name": "Tidore",
+    "ethnicGroupCode": "tidore",
+    "provinceCode": "malut"
+  },
+  {
+    "name": "Dani",
+    "ethnicGroupCode": "dani",
+    "provinceCode": "papua"
+  },
+  {
+    "name": "Asmat",
+    "ethnicGroupCode": "asmat",
+    "provinceCode": "papua"
+  },
+  {
+    "name": "Mey Brat",
+    "ethnicGroupCode": "meybrat",
+    "provinceCode": "papuabarat"
+  },
+  {
+    "name": "Arfak",
+    "ethnicGroupCode": "arfak",
+    "provinceCode": "papuabarat"
+  }
+]
