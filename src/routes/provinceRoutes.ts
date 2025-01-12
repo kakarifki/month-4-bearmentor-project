@@ -199,12 +199,12 @@ router.openapi(
     try {
       const data = await c.req.json()
       const updatedProvince = await updateProvince(code, data)
-      if (updateProvince) {
+      if (updatedProvince) {
         return c.json(
           {
             status: 'success',
             message: 'successfully updated province',
-            data: updateProvince
+            data: updatedProvince
           },
           200
         )
@@ -255,13 +255,13 @@ router.openapi(
   async (c) => {
     const code = c.req.param('code')
     try {
-      const deletedProvince = await deleteProvince(code)
-      if (deleteProvince) {
+      const deletedProvince = await deleteProvince(code);
+      if (deletedProvince) {
         return c.json(
           {
             status: 'success',
             message: 'Successfully deleted a Province',
-            data: deleteProvince
+            data: deletedProvince,
           },
           200
         )
