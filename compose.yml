@@ -1,6 +1,6 @@
 services:
   backend:
-    image: budaya-indonesia-backend:2
+    image: budaya-indonesia-backend:6
     build:
       context: .
       dockerfile: Dockerfile

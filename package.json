@@ -2,11 +2,11 @@
   "name": "budaya-indonesia",
   "scripts": {
     "dev": "bun run --hot src/index.ts",
-    "prestart": "bunx prisma migrate deploy && bunx prisma db seed",
+    "prestart": "echo 'Running migrations and seeding...' && bunx prisma migrate deploy && bunx prisma db seed",
     "start": "bun run src/index.ts"
   },
   "prisma":{
-    "seed": "ts-node ./prisma/seed.ts"
+    "seed": "node ./prisma/seed.ts"
   },
   "dependencies": {
     "@hono/swagger-ui": "^0.5.0",
