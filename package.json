@@ -2,7 +2,7 @@
   "name": "budaya-indonesia",
   "scripts": {
     "dev": "bun run --hot src/index.ts",
-    "prestart": "bunx prisma migrate deploy && bunx prisma db seed",
+    "prestart": "bunx prisma migrate deploy",
     "start": "bun run src/index.ts"
   },
   "prisma":{
