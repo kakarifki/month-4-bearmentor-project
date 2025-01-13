@@ -41,6 +41,8 @@ const createRegionalSongSchema = z.object({
 // Schema for Query RegionalSong
 const queryRegionalSongSchema = z.object({
   title: z.string().optional(),
+  composer: z.string().optional()
+
 });
 
 const router = new OpenAPIHono();

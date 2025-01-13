@@ -20,7 +20,7 @@ The API is documented using the OpenAPI Specification, which can be accessed at:
 
 ## Welcome Page
 
-The API provides a welcome page accessible at `https://indonesia-heritage-api.rifkiseptiawan.com/`. This page offers a brief overview of the API's purpose and functionality.
+The API provides a welcome page accessible at [https://indonesia-heritage-api.rifkiseptiawan.com/](https://indonesia-heritage-api.rifkiseptiawan.com/). This page offers a brief overview of the API's purpose and functionality.
 
 ## Data Model
 
