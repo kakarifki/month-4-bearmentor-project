@@ -5,12 +5,14 @@ import ethnicgroupRoutes from './routes/ethnicgrouproutes';
 import cultureRoutes from './routes/cultureroutes';
 import regionalsongRoutes from './routes/regionalsongroutes';
 import cuisineRoutes from './routes/cuisineroutes';
+import { WelcomePage } from './welcomepage';
+import { html } from 'hono/html';
 
 const app = new OpenAPIHono();
 
 
 app.get(
-    '/ui',
+    '/api',
     swaggerUI({
       url: '/doc'
     })
@@ -18,14 +20,23 @@ app.get(
   
 app.doc('/doc', {
     info: {
-      title: 'An API',
-      version: 'v1'
+      title: 'Indonesian Cultural Heritage API',
+      version: 'v1.0',
+      description: "This API provides access to data on Indonesian provinces, ethnic groups, cultures, regional songs, and traditional cuisine. It aims to preserve and promote Indonesian cultural heritage.",
+      contact: {
+        name: "Rifki Septiawan",
+      url: "https://rifkiseptiawan.com",
+      email: "rifkim91@gmail.com",
+    }
     },
     openapi: '3.1.0'
   })
 
+app.get('/', (c) => {
+    return c.html(WelcomePage());
+  });
 
-// Daftarkan semua route
+// Daftar semua route
 app.route('/provinces', provinceRoutes);
 app.route('/ethnics', ethnicgroupRoutes);
 app.route('/cultures', cultureRoutes);
